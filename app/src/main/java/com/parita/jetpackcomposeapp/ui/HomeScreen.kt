@@ -1,5 +1,7 @@
 package com.parita.jetpackcomposeapp.ui
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,6 +27,10 @@ import com.parita.jetpackcomposeapp.data.Feature
 import com.parita.jetpackcomposeapp.itemDecoration.BottomMenuItem
 import com.parita.jetpackcomposeapp.itemDecoration.FeatureItem
 import com.parita.jetpackcomposeapp.ui.theme.*
+import com.parita.jetpackcomposeapp.util.JetpackConstant
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun HomeScreen() {
@@ -82,8 +88,18 @@ fun HomeScreen() {
     }
 }
 
+fun getCurrentTime(): String {
+    val timeOfDay: Int = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+    return if (timeOfDay >= 0 && timeOfDay < 12) JetpackConstant.GM
+    else if (timeOfDay >= 12 && timeOfDay < 16) JetpackConstant.GA
+    else if (timeOfDay >= 16 && timeOfDay < 21) JetpackConstant.GE
+    else if (timeOfDay >= 21 && timeOfDay < 24) JetpackConstant.GN
+    else JetpackConstant.NA
+}
+
 @Composable
 fun SectionGreetings(name: String = "Parita") {
+   val time = getCurrentTime()
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -94,7 +110,7 @@ fun SectionGreetings(name: String = "Parita") {
         Column(
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Good morning, $name", style = MaterialTheme.typography.h2)
+            Text(text = "$time, $name", style = MaterialTheme.typography.h2)
             Text(text = "We wish you have a good day!", style = MaterialTheme.typography.body1)
         }
         Icon(
