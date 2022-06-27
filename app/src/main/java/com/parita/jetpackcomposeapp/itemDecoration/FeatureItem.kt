@@ -20,7 +20,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.parita.jetpackcomposeapp.CallViewModelApi
-import com.parita.jetpackcomposeapp.checkFeatureDetails
 import com.parita.jetpackcomposeapp.data.Feature
 import com.parita.jetpackcomposeapp.data.Track
 import com.parita.jetpackcomposeapp.ui.theme.ButtonBlue
@@ -87,10 +86,8 @@ fun FeatureItem(feature: List<Feature>, selectedItem: Feature) {
 }
 
 
-
 @Composable
 fun SetUpCards(feature: Feature) {
-    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -108,7 +105,6 @@ fun SetUpCards(feature: Feature) {
             tint = Color.White,
             modifier = Modifier.align(Alignment.BottomStart)
         )
-        if (feature.title.equals(SleepMeditation)) {
             Text(
                 text = "Start",
                 color = TextWhite,
@@ -125,21 +121,5 @@ fun SetUpCards(feature: Feature) {
                     .background(ButtonBlue)
                     .padding(vertical = 6.dp, horizontal = 15.dp)
             )
-        } else{
-            Text(
-                text = "Go",
-                color = TextWhite,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier
-                    .align(
-                        Alignment.BottomEnd
-                    )
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(ButtonBlue)
-                    .padding(vertical = 6.dp, horizontal = 15.dp)
-            )
-
         }
-    }
 }

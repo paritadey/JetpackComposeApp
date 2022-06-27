@@ -3,16 +3,12 @@
 gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
 ;
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
-X
-(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 >
 app/.gitignore,5\1\51e1c5d383dfaa35e0e7e5873a0a99355a86880f
 F
 app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
 \
 ,.idea/inspectionProfiles/Project_Default.xml,4\9\496a238a6afa168dbaf6efd37bb459331589579c
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 :
@@ -48,8 +44,6 @@ v
 Fapp/src/main/java/com/parita/jetpackcomposeapp/api/RetrofitInstance.kt,5\1\51afda99870e7b955973d19ac32e09057fced95c
 x
 Happ/src/main/java/com/parita/jetpackcomposeapp/api/JetpackInterceptor.kt,1\3\13fc079a657dca2d8075a8417362f797bcaf50e9
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 t
 Dapp/src/main/java/com/parita/jetpackcomposeapp/JetpackApplication.kt,e\a\ea98b3113a8cdf3bd194c78c21f8401fa6d5f108
 ~
@@ -58,3 +52,11 @@ q
 Aapp/src/main/java/com/parita/jetpackcomposeapp/api/RetrofitApi.kt,a\8\a8dd9715d297aa4b5edf4fe17058fc2b6debc59b
 p
 @app/src/main/java/com/parita/jetpackcomposeapp/data/MusicData.kt,5\0\50cd6b329171f3e931b14f30fd19e3fcda21ff9b
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/viewmodel/JetpackViewModel.kt,f\4\f4973c88ba96be9a6bc53e8bc1425c704d522aee
+r
+Bapp/src/main/java/com/parita/jetpackcomposeapp/CallViewModelApi.kt,5\d\5df73e0d14e2c0ba37f9b07456b53aa33c966b2c
+X
+(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+h
+8app/src/main/java/com/parita/jetpackcomposeapp/Screen.kt,f\f\ff65380f68bcf32a52877501f6388fa014d81525
