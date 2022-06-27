@@ -1,7 +1,5 @@
 package com.parita.jetpackcomposeapp.ui
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -28,8 +27,10 @@ import com.parita.jetpackcomposeapp.itemDecoration.BottomMenuItem
 import com.parita.jetpackcomposeapp.itemDecoration.FeatureItem
 import com.parita.jetpackcomposeapp.ui.theme.*
 import com.parita.jetpackcomposeapp.util.JetpackConstant
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import com.parita.jetpackcomposeapp.util.JetpackConstant.CalmingSound
+import com.parita.jetpackcomposeapp.util.JetpackConstant.NightIsland
+import com.parita.jetpackcomposeapp.util.JetpackConstant.SleepMeditation
+import com.parita.jetpackcomposeapp.util.JetpackConstant.TipsForSleeping
 import java.util.*
 
 @Composable
@@ -43,38 +44,7 @@ fun HomeScreen() {
             SectionGreetings()
             SectionChips(chips = listOf("Sweet sleep", "Insomnia", "Depression"))
             SectionDailyThoughts()
-            SectionFeature(
-                feature = listOf(
-                    Feature(
-                        title = "Sleep meditation",
-                        R.drawable.ic_headphone,
-                        BlueViolet1,
-                        BlueViolet2,
-                        BlueViolet3
-                    ),
-                    Feature(
-                        title = "Tips for sleeping",
-                        R.drawable.ic_videocam,
-                        LightGreen1,
-                        LightGreen2,
-                        LightGreen3
-                    ),
-                    Feature(
-                        title = "Night island",
-                        R.drawable.ic_headphone,
-                        OrangeYellow1,
-                        OrangeYellow2,
-                        OrangeYellow3
-                    ),
-                    Feature(
-                        title = "Calming sounds",
-                        R.drawable.ic_headphone,
-                        Beige1,
-                        Beige2,
-                        Beige3
-                    )
-                )
-            )
+            SectionFeature()
         }
         SectionBottomMenu(
             items = listOf(
@@ -86,6 +56,15 @@ fun HomeScreen() {
             ), modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
+}
+
+fun sectionData() : List<Feature>{
+   return listOf(
+        Feature(title = SleepMeditation, R.drawable.ic_headphone, BlueViolet1, BlueViolet2, BlueViolet3),
+        Feature(title = TipsForSleeping, R.drawable.ic_videocam, LightGreen1, LightGreen2, LightGreen3),
+        Feature(title = NightIsland, R.drawable.ic_headphone, OrangeYellow1, OrangeYellow2, OrangeYellow3),
+        Feature(title = CalmingSound, R.drawable.ic_headphone, Beige1, Beige2, Beige3)
+    )
 }
 
 fun getCurrentTime(): String {
@@ -190,7 +169,7 @@ fun SectionDailyThoughts(color: Color = LightRed) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SectionFeature(feature: List<Feature>) {
+fun SectionFeature() {
     Column {
         Text(
             text = "Featured",
@@ -198,13 +177,14 @@ fun SectionFeature(feature: List<Feature>) {
             modifier = Modifier.padding(15.dp)
         )
     }
+    var feature = sectionData()
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
         contentPadding = PaddingValues(start = 7.5.dp, end = 7.5.dp, bottom = 100.dp),
         modifier = Modifier.fillMaxHeight()
     ) {
         items(feature.size) {
-            FeatureItem(feature = feature[it])
+            FeatureItem(feature = feature, feature[it])
         }
     }
 }
