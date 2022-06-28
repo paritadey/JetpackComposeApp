@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class JetpackViewModel @Inject constructor(private val repository: JetpackRepository) :
     ViewModel() {
-    var isLoading = mutableStateOf(false)
+    var isLoading = mutableStateOf(true)
     var _hitList: MutableLiveData<ArrayList<Track>> = MutableLiveData()
     var hitList: LiveData<ArrayList<Track>> = _hitList
 
@@ -25,7 +25,7 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
         var hits: ArrayList<Track> = ArrayList()
         val result = repository.getMusicTracks("Kiss the rain", "en-US", 0, 5)
         if (result is Resource.Success) {
-            isLoading.value = true
+            isLoading.value = false
             for (i in result.data?.asJsonObject?.keySet()!!) {
                 if (i.equals("tracks")) {
                     for (j in result.data.asJsonObject.getAsJsonObject(i).asJsonObject.keySet()) {
@@ -46,7 +46,7 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
             }
             _hitList.value = hits
         } else if (result is Resource.Error) {
-            isLoading.value = true
+            isLoading.value = false
             _hitList.value = hits
         }
         return result

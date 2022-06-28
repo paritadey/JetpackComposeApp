@@ -8,15 +8,20 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="fragment_home">
         <action
             android:id="@+id/viewSleepMeditation"
-            app:destination="@id/sleepMeditationFragment" />
+            app:destination="@id/sleepMeditationFragment"
+             />
     </fragment>
     <fragment
         android:id="@+id/sleepMeditationFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.SleepMeditationFragment"
-        android:label="fragment_sleep_meditation"
-        tools:layout="@layout/fragment_sleep_meditation" />
+        android:label="fragment_sleep_meditation">
+        <action
+            android:id="@+id/sleepMeditationBackHome"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
 </navigation>
