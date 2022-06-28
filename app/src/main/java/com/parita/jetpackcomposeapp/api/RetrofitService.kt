@@ -32,6 +32,5 @@ class RetrofitService {
             .client(client)
             .build()
             .create(RetrofitApi::class.java)
-
     }
 }
