@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -20,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.BottomMenuContent
 import com.parita.jetpackcomposeapp.data.Feature
@@ -34,7 +34,7 @@ import com.parita.jetpackcomposeapp.util.JetpackConstant.TipsForSleeping
 import java.util.*
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(findNavController: NavController) {
     Box(
         modifier = Modifier
             .background(DeepBlue)
@@ -44,7 +44,7 @@ fun HomeScreen() {
             SectionGreetings()
             SectionChips(chips = listOf("Sweet sleep", "Insomnia", "Depression"))
             SectionDailyThoughts()
-            SectionFeature()
+            SectionFeature(findNavController)
         }
         SectionBottomMenu(
             items = listOf(
@@ -169,7 +169,7 @@ fun SectionDailyThoughts(color: Color = LightRed) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SectionFeature() {
+fun SectionFeature(findNavController: NavController) {
     Column {
         Text(
             text = "Featured",
@@ -184,7 +184,7 @@ fun SectionFeature() {
         modifier = Modifier.fillMaxHeight()
     ) {
         items(feature.size) {
-            FeatureItem(feature = feature, feature[it])
+            FeatureItem(feature[it],findNavController)
         }
     }
 }

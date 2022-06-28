@@ -19,7 +19,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.CallViewModelApi
+import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.Feature
 import com.parita.jetpackcomposeapp.data.Track
 import com.parita.jetpackcomposeapp.ui.theme.ButtonBlue
@@ -31,13 +33,13 @@ import com.parita.jetpackcomposeapp.util.JetpackConstant.TipsForSleeping
 import com.parita.jetpackcomposeapp.util.standardQuadFromTo
 
 @Composable
-fun FeatureItem(feature: List<Feature>, selectedItem: Feature) {
+fun FeatureItem(feature: Feature, findNavController: NavController) {
     BoxWithConstraints(
         modifier = Modifier
             .padding(7.5.dp)
             .aspectRatio(1f)
             .clip(RoundedCornerShape(10.dp))
-            .background(selectedItem.darkColor)
+            .background(feature.darkColor)
     ) {
         val width = constraints.maxWidth
         val height = constraints.maxHeight
@@ -76,35 +78,26 @@ fun FeatureItem(feature: List<Feature>, selectedItem: Feature) {
             close()
         }
         Canvas(modifier = Modifier.fillMaxSize()) {
-            drawPath(path = mediumColoredPath, color = selectedItem.mediumColor)
-            drawPath(path = lightColoredPath, color = selectedItem.lightColor)
+            drawPath(path = mediumColoredPath, color = feature.mediumColor)
+            drawPath(path = lightColoredPath, color = feature.lightColor)
         }
-        if (selectedItem.title.equals(SleepMeditation))
-        SetUpCards(feature = selectedItem)
-
-    }
-}
-
-
-@Composable
-fun SetUpCards(feature: Feature) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(15.dp)
-    ) {
-        Text(
-            text = feature.title,
-            style = MaterialTheme.typography.h2,
-            lineHeight = 26.sp,
-            modifier = Modifier.align(Alignment.TopStart)
-        )
-        Icon(
-            painter = painterResource(id = feature.iconId),
-            contentDescription = feature.title,
-            tint = Color.White,
-            modifier = Modifier.align(Alignment.BottomStart)
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(15.dp)
+        ) {
+            Text(
+                text = feature.title,
+                style = MaterialTheme.typography.h2,
+                lineHeight = 26.sp,
+                modifier = Modifier.align(Alignment.TopStart)
+            )
+            Icon(
+                painter = painterResource(id = feature.iconId),
+                contentDescription = feature.title,
+                tint = Color.White,
+                modifier = Modifier.align(Alignment.BottomStart)
+            )
             Text(
                 text = "Start",
                 color = TextWhite,
@@ -112,7 +105,7 @@ fun SetUpCards(feature: Feature) {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .clickable {
-                     //   checkFeatureDetails(feature.title)
+                        checkCardDetails(findNavController, feature.title)
                     }
                     .align(
                         Alignment.BottomEnd
@@ -122,4 +115,11 @@ fun SetUpCards(feature: Feature) {
                     .padding(vertical = 6.dp, horizontal = 15.dp)
             )
         }
+    }
+}
+
+fun checkCardDetails(findNavController: NavController, title: String) {
+    when (title) {
+        SleepMeditation -> findNavController.navigate(R.id.viewSleepMeditation)
+    }
 }
