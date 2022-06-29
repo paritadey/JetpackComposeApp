@@ -30,10 +30,6 @@ x
 Happ/src/main/java/com/parita/jetpackcomposeapp/data/BottomMenuContent.kt,a\2\a228e237ab1c4cdbf78c6024b852c3437d2cce2d
 
 Oapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/BottomMenuItem.kt,1\1\1168b879d4d1dec9b44bdb58acfa9fdc1df34b7e
-n
->app/src/main/java/com/parita/jetpackcomposeapp/data/Feature.kt,e\b\eb1a06faab3e835ad6eb2f1b5f9417701019d436
-p
-@app/src/main/java/com/parita/jetpackcomposeapp/data/MusicData.kt,5\0\50cd6b329171f3e931b14f30fd19e3fcda21ff9b
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 P
@@ -60,5 +56,5 @@ Dapp/src/main/java/com/parita/jetpackcomposeapp/JetpackApplication.kt,e\a\ea98b
 Napp/src/main/java/com/parita/jetpackcomposeapp/repository/JetpackRepository.kt,d\8\d8d251c7eaac8326e51e599ffa0574007476d446
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/viewmodel/JetpackViewModel.kt,f\4\f4973c88ba96be9a6bc53e8bc1425c704d522aee
