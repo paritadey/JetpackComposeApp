@@ -41,7 +41,7 @@ fun HomeScreen(findNavController: NavController) {
             .fillMaxSize()
     ) {
         Column {
-            SectionGreetings()
+            SectionGreetings(findNavController)
             SectionChips(chips = listOf("Sweet sleep", "Insomnia", "Depression"))
             SectionDailyThoughts()
             SectionFeature(findNavController)
@@ -77,7 +77,7 @@ fun getCurrentTime(): String {
 }
 
 @Composable
-fun SectionGreetings(name: String = "Parita") {
+fun SectionGreetings(findNavController: NavController) {
    val time = getCurrentTime()
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -89,14 +89,18 @@ fun SectionGreetings(name: String = "Parita") {
         Column(
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "$time, $name", style = MaterialTheme.typography.h2)
+            Text(text = "$time, Parita", style = MaterialTheme.typography.h2)
             Text(text = "We wish you have a good day!", style = MaterialTheme.typography.body1)
         }
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = "Search",
             tint = Color.White,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
+                .clickable {
+                     findNavController.navigate(R.id.openSearchFragment)
+                }
         )
     }
 }

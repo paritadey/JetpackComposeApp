@@ -36,8 +36,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 n
 >app/src/main/java/com/parita/jetpackcomposeapp/MainActivity.kt,f\0\f0cae5ebc599b38ef6e5babc0b0489a8ca0ea1db
-{
-Kapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/HomeFragment.kt,7\e\7ea785502ef600829b9564c82843c50264ce6c19
 q
 Aapp/src/main/java/com/parita/jetpackcomposeapp/api/RetrofitApi.kt,a\8\a8dd9715d297aa4b5edf4fe17058fc2b6debc59b
 x
@@ -52,9 +50,19 @@ y
 Iapp/src/main/java/com/parita/jetpackcomposeapp/util/standardQuadFromTo.kt,e\f\ef7b12dcb29e93ab9423e49181c4237dfb034f7a
 t
 Dapp/src/main/java/com/parita/jetpackcomposeapp/JetpackApplication.kt,e\a\ea98b3113a8cdf3bd194c78c21f8401fa6d5f108
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+n
+>app/src/main/java/com/parita/jetpackcomposeapp/data/Feature.kt,e\b\eb1a06faab3e835ad6eb2f1b5f9417701019d436
+p
+@app/src/main/java/com/parita/jetpackcomposeapp/data/MusicData.kt,5\0\50cd6b329171f3e931b14f30fd19e3fcda21ff9b
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/FeatureItem.kt,a\1\a197e6fabba5258b39222867b0655f380aca0c8f
 ~
-Napp/src/main/java/com/parita/jetpackcomposeapp/repository/JetpackRepository.kt,d\8\d8d251c7eaac8326e51e599ffa0574007476d446
+Napp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/MusicListItem.kt,1\b\1b9125f5105e8ebd705bc0d24e0b1313b3cf1a13
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-|
-Lapp/src/main/java/com/parita/jetpackcomposeapp/viewmodel/JetpackViewModel.kt,f\4\f4973c88ba96be9a6bc53e8bc1425c704d522aee
+{
+Kapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/HomeFragment.kt,7\e\7ea785502ef600829b9564c82843c50264ce6c19
+~
+Napp/src/main/java/com/parita/jetpackcomposeapp/repository/JetpackRepository.kt,d\8\d8d251c7eaac8326e51e599ffa0574007476d446

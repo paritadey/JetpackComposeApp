@@ -40,6 +40,7 @@ fun SleepMeditationScreen(findNavController: NavController) {
         }
     }
 }
+
 @Composable
 fun CallApi(viewModel: JetpackViewModel = hiltViewModel()) {
     val scope = rememberCoroutineScope()
@@ -48,7 +49,7 @@ fun CallApi(viewModel: JetpackViewModel = hiltViewModel()) {
     val getAllMusicData = viewModel.hitList.observeAsState()
 
     scope.launch {
-        var result = viewModel.getMusicData()
+        var result = viewModel.getMusicData("Kiss the rain")
         if (result is Resource.Success) {
             scope.cancel()
             Log.d("TAG", "Success")
@@ -62,7 +63,7 @@ fun CallApi(viewModel: JetpackViewModel = hiltViewModel()) {
             ShowMessage()
             getAllMusicData.value?.let { ShowMusicData(it) }
         }
-    } else if(viewModel.isLoading.value){
+    } else if (viewModel.isLoading.value) {
         CustomCircularProgress(isDisplay = true)
     }
 }
@@ -120,10 +121,10 @@ fun ShowMessage() {
 }
 
 @Composable
-fun ShowMusicData(result:ArrayList<Track>){
+fun ShowMusicData(result: ArrayList<Track>) {
     Log.d("TAG", "Music data: ${result}")
-    LazyColumn(contentPadding= PaddingValues(12.dp)){
-        items(items = result){
+    LazyColumn(contentPadding = PaddingValues(12.dp)) {
+        items(items = result) {
             MusicListItem(it)
         }
     }

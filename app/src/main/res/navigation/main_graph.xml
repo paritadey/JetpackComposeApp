@@ -11,8 +11,10 @@
         android:label="fragment_home">
         <action
             android:id="@+id/viewSleepMeditation"
-            app:destination="@id/sleepMeditationFragment"
-             />
+            app:destination="@id/sleepMeditationFragment" />
+        <action
+            android:id="@+id/openSearchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/sleepMeditationFragment"
@@ -22,6 +24,16 @@
             android:id="@+id/sleepMeditationBackHome"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.SearchFragment"
+        android:label="fragment_search">
+        <action
+            android:id="@+id/searchBackHome"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>
