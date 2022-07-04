@@ -108,4 +108,3 @@ fun sendData(data:Track, findNavController: NavController){
     bundle.putParcelable("image", data.images)
     findNavController.navigate(R.id.SearchToPlayMusic, bundle)
 }
-
