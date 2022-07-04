@@ -35,5 +35,35 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/SearchToPlayMusic"
+            app:destination="@id/playMusicFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/playMusicFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.PlayMusicFragment"
+        android:label="PlayMusicFragment" >
+        <action
+            android:id="@+id/playBackToSearch"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="false"/>
+        <argument
+            android:name="key"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="subtitle"
+            app:argType="string" />
+        <argument
+            android:name="images"
+            app:argType="com.parita.jetpackcomposeapp.data.Images" />
+        <argument
+            android:name="share"
+            app:argType="com.parita.jetpackcomposeapp.data.Share" />
     </fragment>
 </navigation>

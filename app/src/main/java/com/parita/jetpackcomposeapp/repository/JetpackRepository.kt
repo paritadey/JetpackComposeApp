@@ -2,11 +2,8 @@ package com.parita.jetpackcomposeapp.repository
 
 import com.google.gson.JsonObject
 import com.parita.jetpackcomposeapp.api.RetrofitApi
-import com.parita.jetpackcomposeapp.data.Tracks
 import com.parita.jetpackcomposeapp.util.Resource
 import dagger.hilt.android.scopes.ActivityScoped
-import org.json.JSONArray
-import org.json.JSONObject
 import javax.inject.Inject
 
 @ActivityScoped

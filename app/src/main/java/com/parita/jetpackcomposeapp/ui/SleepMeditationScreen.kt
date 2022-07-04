@@ -44,8 +44,6 @@ fun SleepMeditationScreen(findNavController: NavController) {
 @Composable
 fun CallApi(viewModel: JetpackViewModel = hiltViewModel()) {
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
-    val scaffoldState = rememberScaffoldState()
     val getAllMusicData = viewModel.hitList.observeAsState()
 
     scope.launch {

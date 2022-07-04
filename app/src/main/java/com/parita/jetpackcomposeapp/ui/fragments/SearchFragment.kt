@@ -25,7 +25,7 @@ class SearchFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 MeditationUITheme {
-                    SearchScreen()
+                    SearchScreen(findNavController())
                 }
             }
         }
