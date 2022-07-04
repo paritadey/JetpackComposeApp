@@ -1,7 +1,5 @@
 package com.parita.jetpackcomposeapp.ui
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,6 +19,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.BottomMenuContent
 import com.parita.jetpackcomposeapp.data.Feature
@@ -28,53 +27,24 @@ import com.parita.jetpackcomposeapp.itemDecoration.BottomMenuItem
 import com.parita.jetpackcomposeapp.itemDecoration.FeatureItem
 import com.parita.jetpackcomposeapp.ui.theme.*
 import com.parita.jetpackcomposeapp.util.JetpackConstant
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import com.parita.jetpackcomposeapp.util.JetpackConstant.CalmingSound
+import com.parita.jetpackcomposeapp.util.JetpackConstant.NightIsland
+import com.parita.jetpackcomposeapp.util.JetpackConstant.SleepMeditation
+import com.parita.jetpackcomposeapp.util.JetpackConstant.TipsForSleeping
 import java.util.*
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(findNavController: NavController) {
     Box(
         modifier = Modifier
             .background(DeepBlue)
             .fillMaxSize()
     ) {
         Column {
-            SectionGreetings()
+            SectionGreetings(findNavController)
             SectionChips(chips = listOf("Sweet sleep", "Insomnia", "Depression"))
             SectionDailyThoughts()
-            SectionFeature(
-                feature = listOf(
-                    Feature(
-                        title = "Sleep meditation",
-                        R.drawable.ic_headphone,
-                        BlueViolet1,
-                        BlueViolet2,
-                        BlueViolet3
-                    ),
-                    Feature(
-                        title = "Tips for sleeping",
-                        R.drawable.ic_videocam,
-                        LightGreen1,
-                        LightGreen2,
-                        LightGreen3
-                    ),
-                    Feature(
-                        title = "Night island",
-                        R.drawable.ic_headphone,
-                        OrangeYellow1,
-                        OrangeYellow2,
-                        OrangeYellow3
-                    ),
-                    Feature(
-                        title = "Calming sounds",
-                        R.drawable.ic_headphone,
-                        Beige1,
-                        Beige2,
-                        Beige3
-                    )
-                )
-            )
+            SectionFeature(findNavController)
         }
         SectionBottomMenu(
             items = listOf(
@@ -88,6 +58,15 @@ fun HomeScreen() {
     }
 }
 
+fun sectionData() : List<Feature>{
+   return listOf(
+        Feature(title = SleepMeditation, R.drawable.ic_headphone, BlueViolet1, BlueViolet2, BlueViolet3),
+        Feature(title = TipsForSleeping, R.drawable.ic_videocam, LightGreen1, LightGreen2, LightGreen3),
+        Feature(title = NightIsland, R.drawable.ic_headphone, OrangeYellow1, OrangeYellow2, OrangeYellow3),
+        Feature(title = CalmingSound, R.drawable.ic_headphone, Beige1, Beige2, Beige3)
+    )
+}
+
 fun getCurrentTime(): String {
     val timeOfDay: Int = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
     return if (timeOfDay >= 0 && timeOfDay < 12) JetpackConstant.GM
@@ -98,7 +77,7 @@ fun getCurrentTime(): String {
 }
 
 @Composable
-fun SectionGreetings(name: String = "Parita") {
+fun SectionGreetings(findNavController: NavController) {
    val time = getCurrentTime()
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -110,14 +89,18 @@ fun SectionGreetings(name: String = "Parita") {
         Column(
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "$time, $name", style = MaterialTheme.typography.h2)
+            Text(text = "$time, Parita", style = MaterialTheme.typography.h2)
             Text(text = "We wish you have a good day!", style = MaterialTheme.typography.body1)
         }
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = "Search",
             tint = Color.White,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
+                .clickable {
+                     findNavController.navigate(R.id.openSearchFragment)
+                }
         )
     }
 }
@@ -190,7 +173,7 @@ fun SectionDailyThoughts(color: Color = LightRed) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SectionFeature(feature: List<Feature>) {
+fun SectionFeature(findNavController: NavController) {
     Column {
         Text(
             text = "Featured",
@@ -198,13 +181,14 @@ fun SectionFeature(feature: List<Feature>) {
             modifier = Modifier.padding(15.dp)
         )
     }
+    var feature = sectionData()
     LazyVerticalGrid(
         cells = GridCells.Fixed(2),
         contentPadding = PaddingValues(start = 7.5.dp, end = 7.5.dp, bottom = 100.dp),
         modifier = Modifier.fillMaxHeight()
     ) {
         items(feature.size) {
-            FeatureItem(feature = feature[it])
+            FeatureItem(feature[it],findNavController)
         }
     }
 }

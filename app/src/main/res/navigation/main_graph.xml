@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.HomeFragment"
+        android:label="fragment_home">
+        <action
+            android:id="@+id/viewSleepMeditation"
+            app:destination="@id/sleepMeditationFragment" />
+        <action
+            android:id="@+id/openSearchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sleepMeditationFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.SleepMeditationFragment"
+        android:label="fragment_sleep_meditation">
+        <action
+            android:id="@+id/sleepMeditationBackHome"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.SearchFragment"
+        android:label="fragment_search">
+        <action
+            android:id="@+id/searchBackHome"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/SearchToPlayMusic"
+            app:destination="@id/playMusicFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/playMusicFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.PlayMusicFragment"
+        android:label="PlayMusicFragment" >
+        <action
+            android:id="@+id/playBackToSearch"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/searchFragment"
+            app:popUpToInclusive="false"/>
+        <argument
+            android:name="key"
+            app:argType="string" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="subtitle"
+            app:argType="string" />
+        <argument
+            android:name="images"
+            app:argType="com.parita.jetpackcomposeapp.data.Images" />
+        <argument
+            android:name="share"
+            app:argType="com.parita.jetpackcomposeapp.data.Share" />
+    </fragment>
+</navigation>
