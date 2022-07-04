@@ -20,12 +20,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PlayMusicFragment : Fragment() {
 
-    private lateinit var track: TrackDetails
     private lateinit var key:String
     private lateinit var title:String
     private lateinit var subtitle:String
     private lateinit var share: Share
     private lateinit var images:Images
+    private lateinit var trackDetails: TrackDetails
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +36,7 @@ class PlayMusicFragment : Fragment() {
             share = arguments!!.getParcelable("share")!!
             images = arguments!!.getParcelable("image")!!
         }
+        trackDetails = TrackDetails(key, title, subtitle, share, images)
     }
 
     override fun onCreateView(
@@ -45,7 +46,7 @@ class PlayMusicFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 MeditationUITheme {
-                    PlayMusicScreen(findNavController())
+                    PlayMusicScreen(findNavController(), trackDetails)
                 }
             }
         }

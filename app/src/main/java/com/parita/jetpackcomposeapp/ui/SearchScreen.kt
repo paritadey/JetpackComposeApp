@@ -1,6 +1,9 @@
 package com.parita.jetpackcomposeapp.ui
 
+import android.os.Bundle
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -16,18 +19,23 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.parita.jetpackcomposeapp.R
+import com.parita.jetpackcomposeapp.data.Track
+import com.parita.jetpackcomposeapp.itemDecoration.MusicRow
 import com.parita.jetpackcomposeapp.ui.theme.DeepBlue
 import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 
 @Composable
-fun SearchScreen() {
+fun SearchScreen(findNavController: NavController) {
     Scaffold(backgroundColor = DeepBlue) {
-        SearchView()
+        SearchView(findNavController)
     }
 }
 
 @Composable
-fun SearchView(viewModel: JetpackViewModel = hiltViewModel()) {
+fun SearchView(findNavController: NavController) {
+    val viewModel: JetpackViewModel = hiltViewModel()
     val musicList = viewModel.hitList.observeAsState()
     var query = viewModel.query.value
     Column {
@@ -74,10 +82,30 @@ fun SearchView(viewModel: JetpackViewModel = hiltViewModel()) {
         }
         if (!viewModel.isLoading.value) {
             if (viewModel.hitList.value!!.isNotEmpty()) {
-                musicList.value?.let { ShowMusicData(result = it) }
+                musicList.value?.let { MusicList(result = it, findNavController) }
             }
         } else if (viewModel.isLoading.value && viewModel.startSearch.value) {
             CustomCircularProgress(isDisplay = true)
         }
     }
 }
+
+@Composable
+fun MusicList(result: ArrayList<Track>, findNavController: NavController){
+    LazyColumn(contentPadding = PaddingValues(12.dp)){
+        items(result){ data->
+            MusicRow(track = data, selectedItem = {sendData(it, findNavController)})
+        }
+    }
+}
+
+fun sendData(data:Track, findNavController: NavController){
+    var bundle = Bundle()
+    bundle.putString("key", data.key)
+    bundle.putString("title", data.title)
+    bundle.putString("subtitle", data.subtitle)
+    bundle.putParcelable("share", data.share)
+    bundle.putParcelable("image", data.images)
+    findNavController.navigate(R.id.SearchToPlayMusic, bundle)
+}
+
