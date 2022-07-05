@@ -45,11 +45,6 @@
         android:id="@+id/playMusicFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.PlayMusicFragment"
         android:label="PlayMusicFragment" >
-        <action
-            android:id="@+id/playBackToSearch"
-            app:destination="@id/searchFragment"
-            app:popUpTo="@id/searchFragment"
-            app:popUpToInclusive="false"/>
         <argument
             android:name="key"
             app:argType="string" />
@@ -69,12 +64,11 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        android:label="fragment_splash">
         <action
             android:id="@+id/SplashToHome"
             app:destination="@id/homeFragment"
-            app:popUpToInclusive="false"
-            app:popUpTo="@id/homeFragment"/>
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/splashFragment"/>
     </fragment>
 </navigation>
