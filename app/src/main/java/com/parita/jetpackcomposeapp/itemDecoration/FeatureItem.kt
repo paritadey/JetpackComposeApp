@@ -40,7 +40,7 @@ fun FeatureItem(feature: Feature, findNavController: NavController) {
         //Medium color path
         val mediumPath = mediumColorPath(width, height)
         //Light color path
-        val lightPath = lightColorPath(width, height)
+        val lightPath = lightColorPath(width, height, "featureItem")
 
         Canvas(modifier = Modifier.fillMaxSize()) {
             drawPath(path = mediumPath, color = feature.mediumColor)
@@ -83,7 +83,7 @@ fun FeatureItem(feature: Feature, findNavController: NavController) {
     }
 }
 
-fun lightColorPath(width: Int, height: Int): Path {
+fun lightColorPath(width: Int, height: Int, classname: String): Path {
     val lightColoredPoint1 = Offset(0f, height * 0.35f)
     val lightColoredPoint2 = Offset(width * 0.1f, height * 0.4f)
     val lightColoredPoint3 = Offset(width * 0.3f, height * 0.35f)
@@ -96,8 +96,13 @@ fun lightColorPath(width: Int, height: Int): Path {
         standardQuadFromTo(lightColoredPoint2, lightColoredPoint3)
         standardQuadFromTo(lightColoredPoint3, lightColoredPoint4)
         standardQuadFromTo(lightColoredPoint4, lightColoredPoint5)
-        lineTo(width.toFloat() + 100f, height.toFloat() - 100f)
-        lineTo(-100f, height.toFloat() + 100f)
+        if (classname.equals("playMusic")) {
+            lineTo(width.toFloat() + 150f, height.toFloat() - 0f)
+            lineTo(-0f, height.toFloat() + 100f)
+        } else if (classname.equals("featureItem")) {
+            lineTo(width.toFloat() + 100f, height.toFloat() - 100f)
+            lineTo(-100f, height.toFloat() + 100f)
+        }
         close()
     }
     return lightColoredPath
