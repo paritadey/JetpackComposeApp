@@ -14,7 +14,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -50,7 +50,6 @@ fun CallApi(viewModel: JetpackViewModel = hiltViewModel()) {
         var result = viewModel.getMusicData("Kiss the rain")
         if (result is Resource.Success) {
             scope.cancel()
-            Log.d("TAG", "Success")
         } else if (result is Resource.Error) {
             Log.d("TAG", "Error: ${result.message}")
         }
@@ -72,12 +71,12 @@ fun SetToolbar(findNavController: NavController) {
         TopAppBar(
             elevation = 4.dp,
             title = {
-                Text(text = "SleepOMania", color = Color.White)
+                Text(text = stringResource(id = R.string.app_name), color = Color.White)
             },
             backgroundColor = MaterialTheme.colors.primary,
             navigationIcon = {
                 IconButton(onClick = { findNavController.navigate(R.id.sleepMeditationBackHome) }) {
-                    Icon(Icons.Filled.ArrowBack, "Back Button")
+                    Icon(Icons.Filled.ArrowBack, stringResource(id = R.string.back_button))
                 }
             })
     }
@@ -110,7 +109,7 @@ fun ShowMessage() {
     ) {
         Column(verticalArrangement = Arrangement.Center) {
             Text(
-                text = "Soothing songs will take you to the heaven !!",
+                text = stringResource(id = R.string.soothing_music),
                 color = Color.White,
                 style = MaterialTheme.typography.h2
             )
@@ -120,7 +119,6 @@ fun ShowMessage() {
 
 @Composable
 fun ShowMusicData(result: ArrayList<Track>) {
-    Log.d("TAG", "Music data: ${result}")
     LazyColumn(contentPadding = PaddingValues(12.dp)) {
         items(items = result) {
             MusicListItem(it)

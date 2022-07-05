@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
@@ -42,27 +43,57 @@ fun HomeScreen(findNavController: NavController) {
     ) {
         Column {
             SectionGreetings(findNavController)
-            SectionChips(chips = listOf("Sweet sleep", "Insomnia", "Depression"))
+            SectionChips(
+                chips = listOf(
+                    stringResource(id = R.string.sweet_sleep),
+                    stringResource(id = R.string.insomnia),
+                    stringResource(id = R.string.depression)
+                )
+            )
             SectionDailyThoughts()
             SectionFeature(findNavController)
         }
         SectionBottomMenu(
             items = listOf(
-                BottomMenuContent("Home", R.drawable.ic_home),
-                BottomMenuContent("Meditate", R.drawable.ic_bubble),
-                BottomMenuContent("Sleep", R.drawable.ic_moon),
-                BottomMenuContent("Music", R.drawable.ic_music),
-                BottomMenuContent("Profile", R.drawable.ic_profile),
+                BottomMenuContent(stringResource(id = R.string.home_menu), R.drawable.ic_home),
+                BottomMenuContent(
+                    stringResource(id = R.string.meditate_menu),
+                    R.drawable.ic_bubble
+                ),
+                BottomMenuContent(stringResource(id = R.string.sleep_menu), R.drawable.ic_moon),
+                BottomMenuContent(stringResource(id = R.string.music_menu), R.drawable.ic_music),
+                BottomMenuContent(
+                    stringResource(id = R.string.profile_menu),
+                    R.drawable.ic_profile
+                ),
             ), modifier = Modifier.align(Alignment.BottomCenter)
         )
     }
 }
 
-fun sectionData() : List<Feature>{
-   return listOf(
-        Feature(title = SleepMeditation, R.drawable.ic_headphone, BlueViolet1, BlueViolet2, BlueViolet3),
-        Feature(title = TipsForSleeping, R.drawable.ic_videocam, LightGreen1, LightGreen2, LightGreen3),
-        Feature(title = NightIsland, R.drawable.ic_headphone, OrangeYellow1, OrangeYellow2, OrangeYellow3),
+fun sectionData(): List<Feature> {
+    return listOf(
+        Feature(
+            title = SleepMeditation,
+            R.drawable.ic_headphone,
+            BlueViolet1,
+            BlueViolet2,
+            BlueViolet3
+        ),
+        Feature(
+            title = TipsForSleeping,
+            R.drawable.ic_videocam,
+            LightGreen1,
+            LightGreen2,
+            LightGreen3
+        ),
+        Feature(
+            title = NightIsland,
+            R.drawable.ic_headphone,
+            OrangeYellow1,
+            OrangeYellow2,
+            OrangeYellow3
+        ),
         Feature(title = CalmingSound, R.drawable.ic_headphone, Beige1, Beige2, Beige3)
     )
 }
@@ -78,7 +109,7 @@ fun getCurrentTime(): String {
 
 @Composable
 fun SectionGreetings(findNavController: NavController) {
-   val time = getCurrentTime()
+    val time = getCurrentTime()
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -90,16 +121,16 @@ fun SectionGreetings(findNavController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "$time, Parita", style = MaterialTheme.typography.h2)
-            Text(text = "We wish you have a good day!", style = MaterialTheme.typography.body1)
+            Text(text = stringResource(id = R.string.greetings), style = MaterialTheme.typography.body1)
         }
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
-            contentDescription = "Search",
+            contentDescription = stringResource(id = R.string.search_image),
             tint = Color.White,
             modifier = Modifier
                 .size(24.dp)
                 .clickable {
-                     findNavController.navigate(R.id.openSearchFragment)
+                    findNavController.navigate(R.id.openSearchFragment)
                 }
         )
     }
@@ -147,9 +178,9 @@ fun SectionDailyThoughts(color: Color = LightRed) {
             .fillMaxWidth()
     ) {
         Column {
-            Text(text = "Daily Thought", style = MaterialTheme.typography.h2)
+            Text(text = stringResource(id = R.string.daily_thought), style = MaterialTheme.typography.h2)
             Text(
-                text = "Meditation -> 3-10 min",
+                text = stringResource(id = R.string.meditation_3_mins),
                 style = MaterialTheme.typography.body1,
                 color = TextWhite
             )
@@ -176,7 +207,7 @@ fun SectionDailyThoughts(color: Color = LightRed) {
 fun SectionFeature(findNavController: NavController) {
     Column {
         Text(
-            text = "Featured",
+            text = stringResource(id = R.string.featured),
             style = MaterialTheme.typography.h2,
             modifier = Modifier.padding(15.dp)
         )
@@ -188,7 +219,7 @@ fun SectionFeature(findNavController: NavController) {
         modifier = Modifier.fillMaxHeight()
     ) {
         items(feature.size) {
-            FeatureItem(feature[it],findNavController)
+            FeatureItem(feature[it], findNavController)
         }
     }
 }
