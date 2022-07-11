@@ -50,7 +50,7 @@ fun HomeScreen(findNavController: NavController) {
                     stringResource(id = R.string.depression)
                 )
             )
-            SectionDailyThoughts()
+            SectionDailyThoughts(findNavController)
             SectionFeature(findNavController)
         }
         SectionBottomMenu(
@@ -121,7 +121,10 @@ fun SectionGreetings(findNavController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(text = "$time, Parita", style = MaterialTheme.typography.h2)
-            Text(text = stringResource(id = R.string.greetings), style = MaterialTheme.typography.body1)
+            Text(
+                text = stringResource(id = R.string.greetings),
+                style = MaterialTheme.typography.body1
+            )
         }
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
@@ -164,7 +167,7 @@ fun SectionChips(
 }
 
 @Composable
-fun SectionDailyThoughts(color: Color = LightRed) {
+fun SectionDailyThoughts(findNavController: NavController) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -173,12 +176,15 @@ fun SectionDailyThoughts(color: Color = LightRed) {
             .clip(
                 RoundedCornerShape(10.dp)
             )//.clickable {  }
-            .background(color)
+            .background(LightRed)
             .padding(horizontal = 15.dp, vertical = 20.dp)
             .fillMaxWidth()
     ) {
-        Column {
-            Text(text = stringResource(id = R.string.daily_thought), style = MaterialTheme.typography.h2)
+        Column(modifier = Modifier.clickable { findNavController.navigate(R.id.HomeToNotes) }) {
+            Text(
+                text = stringResource(id = R.string.daily_thought),
+                style = MaterialTheme.typography.h2
+            )
             Text(
                 text = stringResource(id = R.string.meditation_3_mins),
                 style = MaterialTheme.typography.body1,

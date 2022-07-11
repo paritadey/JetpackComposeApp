@@ -17,4 +17,6 @@
     <string name="featured">Featured</string>
     <string name="back_button">Back Button</string>
     <string name="soothing_music">Soothing songs will take you to the heaven !!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

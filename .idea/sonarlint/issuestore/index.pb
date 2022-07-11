@@ -68,3 +68,9 @@ p
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+}
+Mapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/SearchFragment.kt,4\9\492ffe66140d547095f55b9aa396eae124e4bcbf
+}
+Mapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/SplashFragment.kt,c\b\cb3a40aa0347369c253a6fe3f5d49575bbd8f953
+€
+Papp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/PlayMusicFragment.kt,f\0\f00d063479a79d089844388c713b313040bc119c
