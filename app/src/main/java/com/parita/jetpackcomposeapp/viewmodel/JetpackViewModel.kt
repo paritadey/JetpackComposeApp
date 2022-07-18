@@ -26,6 +26,7 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
     var hitList: LiveData<ArrayList<Track>> = _hitList
     val query = mutableStateOf("")
     var startSearch = mutableStateOf(false)
+    var noteQuery = mutableStateOf("")
 
 
     suspend fun getMusicData(searchName: String): Resource<JsonObject> {

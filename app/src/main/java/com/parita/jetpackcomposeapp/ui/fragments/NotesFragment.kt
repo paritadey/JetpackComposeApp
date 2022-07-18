@@ -5,8 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
+import androidx.navigation.findNavController
 import com.parita.jetpackcomposeapp.R
+import com.parita.jetpackcomposeapp.ui.HomeScreen
+import com.parita.jetpackcomposeapp.ui.NoteScreen
+import com.parita.jetpackcomposeapp.ui.theme.MeditationUITheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NotesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +24,12 @@ class NotesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes, container, false)
+        return ComposeView(requireContext()).apply {
+            setContent {
+                MeditationUITheme {
+                    NoteScreen(findNavController())
+                }
+            }
+        }
     }
 }
