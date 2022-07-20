@@ -1,14 +1,9 @@
 package com.parita.jetpackcomposeapp.ui
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -29,8 +24,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.NotesData
-import com.parita.jetpackcomposeapp.data.Track
-import com.parita.jetpackcomposeapp.itemDecoration.MusicRow
 import com.parita.jetpackcomposeapp.itemDecoration.NoteItem
 import com.parita.jetpackcomposeapp.ui.theme.*
 import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
@@ -188,7 +181,7 @@ fun ShowFloatingButton(findNavController: NavController) {
     ) {
         FloatingActionButton(
             onClick = { findNavController.navigate(R.id.notesListToAddNote) },
-            backgroundColor = Color.Yellow, contentColor = Color.Blue
+            backgroundColor = BlueViolet1, contentColor = Color.White
         ) {
             Icon(Icons.Filled.Add, contentDescription = "Add New Note button")
         }

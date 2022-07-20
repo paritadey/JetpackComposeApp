@@ -70,3 +70,13 @@ p
 @app/src/main/java/com/parita/jetpackcomposeapp/data/NotesData.kt,f\c\fc4c210ce153392c67e8293763779f65980c009c
 |
 Lapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/FeatureItem.kt,a\1\a197e6fabba5258b39222867b0655f380aca0c8f
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/viewmodel/JetpackViewModel.kt,f\4\f4973c88ba96be9a6bc53e8bc1425c704d522aee
+z
+Japp/src/main/java/com/parita/jetpackcomposeapp/ui/SleepMeditationScreen.kt,a\4\a42479c4672bb88fa82680c6e677a021565abc37
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+}
+Mapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/SearchFragment.kt,4\9\492ffe66140d547095f55b9aa396eae124e4bcbf
+y
+Iapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/MusicRow.kt,1\4\1425de4901070eadfbee163a0d29a8878f9289d2

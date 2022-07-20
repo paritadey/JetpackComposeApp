@@ -82,9 +82,7 @@
         android:label="fragment_notes" >
         <action
             android:id="@+id/notesListToAddNote"
-            app:destination="@id/addNoteFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/notesFragment"/>
+            app:destination="@id/addNoteFragment"/>
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
