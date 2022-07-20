@@ -79,5 +79,16 @@
     <fragment
         android:id="@+id/notesFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.NotesFragment"
-        android:label="fragment_notes" />
+        android:label="fragment_notes" >
+        <action
+            android:id="@+id/notesListToAddNote"
+            app:destination="@id/addNoteFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/notesFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
 </navigation>

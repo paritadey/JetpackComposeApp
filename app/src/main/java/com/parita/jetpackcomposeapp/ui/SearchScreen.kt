@@ -31,6 +31,7 @@ import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 fun SearchScreen(findNavController: NavController) {
     Scaffold(backgroundColor = DeepBlue) {
         SearchView(findNavController)
+     //   ShowFloatingButton(findNavController)
     }
 }
 
@@ -109,3 +110,4 @@ fun sendData(data:Track, findNavController: NavController){
     bundle.putParcelable("image", data.images)
     findNavController.navigate(R.id.SearchToPlayMusic, bundle)
 }
+

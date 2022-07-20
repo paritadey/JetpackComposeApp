@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.findNavController
 import com.parita.jetpackcomposeapp.R
-import com.parita.jetpackcomposeapp.ui.HomeScreen
-import com.parita.jetpackcomposeapp.ui.NoteScreen
+import com.parita.jetpackcomposeapp.ui.NoteListScreen
 import com.parita.jetpackcomposeapp.ui.theme.MeditationUITheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +26,7 @@ class NotesFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 MeditationUITheme {
-                    NoteScreen(findNavController())
+                    NoteListScreen(findNavController())
                 }
             }
         }
