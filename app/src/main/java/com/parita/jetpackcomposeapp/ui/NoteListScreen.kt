@@ -26,6 +26,9 @@ import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.NotesData
 import com.parita.jetpackcomposeapp.itemDecoration.NoteItem
 import com.parita.jetpackcomposeapp.ui.theme.*
+import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS1
+import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS2
+import com.parita.jetpackcomposeapp.util.JetpackConstant.NLS
 import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 
 @Composable
@@ -36,7 +39,7 @@ fun NoteListScreen(findNavController: NavController) {
             .fillMaxSize()
     ) {
         Column {
-            SectionNoteGreeting()
+            SectionNoteGreeting(NLS)
             SectionSearch()
             ShowRecyclerView()
             ShowFloatingButton(findNavController)
@@ -45,7 +48,7 @@ fun NoteListScreen(findNavController: NavController) {
 }
 
 @Composable
-fun SectionNoteGreeting() {
+fun SectionNoteGreeting(screenName: String) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -55,7 +58,13 @@ fun SectionNoteGreeting() {
     ) {
         Column(verticalArrangement = Arrangement.Center) {
             Text(
-                text = stringResource(id = R.string.notes_screen),
+                text = if (screenName.equals(NLS) || screenName.equals(ANS1)) {
+                    stringResource(id = R.string.notes_screen)
+                } else if (screenName.equals(ANS2)) {
+                    stringResource(id = R.string.add_note_screen_2)
+                } else {
+                    stringResource(id = R.string.app_name)
+                },
                 style = MaterialTheme.typography.h2
             )
         }
@@ -148,24 +157,28 @@ fun sectionNotes(): List<NotesData> {
             "note_id_1",
             "My night sleep",
             "abcde fghi jklm nopq rstu vwx yz",
+            "12:09, 19.07.2022",
             "12:09, 19.07.2022"
         ),
         NotesData(
             "note_id_2",
             "Bazar list",
             "abcde fghi jklm nopq rstu vwx yz",
+            "11:50, 18.10.2021",
             "11:50, 18.10.2021"
         ),
         NotesData(
             "note_id_3",
             "Trip details",
             "abcde fghi jklm nopq rstu vwx yz",
+            "13:45, 28.01.2021",
             "13:45, 28.01.2021"
         ),
         NotesData(
             "note_id_4",
             "Contest details",
             "abcde fghi jklm nopq rstu vwx yz",
+            "22:59, 05.02.2020",
             "22:59, 05.02.2020"
         )
     )
