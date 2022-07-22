@@ -6,4 +6,5 @@ data class NotesData(
     var noteDescription: String,
     var noteCreationTime: String,
     var noteLastModified: String,
+    var noteDueDate: String
 )

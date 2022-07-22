@@ -2,11 +2,9 @@ package com.parita.jetpackcomposeapp.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -57,6 +55,7 @@ fun SectionTitle() {
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next
             ),
+            shape = RoundedCornerShape(10.dp),
             singleLine = true,
             value = textTitle,
             onValueChange = { textTitle = it },
@@ -75,7 +74,7 @@ fun SectionTitle() {
 }
 
 @Composable
-fun SectionDescription(){
+fun SectionDescription() {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -91,6 +90,7 @@ fun SectionDescription(){
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next
             ),
+            shape = RoundedCornerShape(10.dp),
             maxLines = 50,
             value = textTitle,
             onValueChange = { textTitle = it },
@@ -109,7 +109,67 @@ fun SectionDescription(){
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SectionCategory(){
+fun SectionCategory() {
     SectionNoteGreeting(ANS2)
+    val options = listOf<String>(
+        "Choose Category / Tag",
+        "Work",
+        "Office",
+        "School",
+        "Daily Life",
+        "Grocery",
+        "Event",
+        "DateToRemember",
+        "Finance",
+        "Others"
+    )
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOptionText by remember {
+        mutableStateOf(options[0])
+    }
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
+            TextField(
+                readOnly = true,
+                value = selectedOptionText,
+                onValueChange = {},
+                //label = { Text("Categories") },
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                colors = ExposedDropdownMenuDefaults.textFieldColors(
+                    focusedLabelColor = Color.White,
+                    unfocusedLabelColor = Color.White,
+                    textColor = Color.White,
+                    cursorColor = Color.White,
+                    focusedIndicatorColor = Color.White,
+                    unfocusedIndicatorColor = Color.White,
+                    backgroundColor = Color.Transparent,
+                    trailingIconColor = Color.White,
+                    focusedTrailingIconColor = Color.White
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                        top = 16.dp
+                    )
+            )
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                options.forEach { selectedOption ->
+                    DropdownMenuItem(onClick = {
+                        selectedOptionText = selectedOption
+                        expanded = false
+                    }) {
+                        Text(text = selectedOption, color = Color.Black)
+                    }
+                }
+            }
+        }
+    }
 }

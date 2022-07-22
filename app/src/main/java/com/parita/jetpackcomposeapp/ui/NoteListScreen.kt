@@ -158,28 +158,32 @@ fun sectionNotes(): List<NotesData> {
             "My night sleep",
             "abcde fghi jklm nopq rstu vwx yz",
             "12:09, 19.07.2022",
-            "12:09, 19.07.2022"
+            "12:09, 19.07.2022",
+            "25.08.2022"
         ),
         NotesData(
             "note_id_2",
             "Bazar list",
             "abcde fghi jklm nopq rstu vwx yz",
             "11:50, 18.10.2021",
-            "11:50, 18.10.2021"
+            "11:50, 18.10.2021",
+            "20.12.2021"
         ),
         NotesData(
             "note_id_3",
             "Trip details",
             "abcde fghi jklm nopq rstu vwx yz",
             "13:45, 28.01.2021",
-            "13:45, 28.01.2021"
+            "13:45, 28.01.2021",
+            "28.05.2021"
         ),
         NotesData(
             "note_id_4",
             "Contest details",
             "abcde fghi jklm nopq rstu vwx yz",
             "22:59, 05.02.2020",
-            "22:59, 05.02.2020"
+            "22:59, 05.02.2020",
+            "15.02.2020"
         )
     )
 }
