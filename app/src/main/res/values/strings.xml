@@ -25,4 +25,8 @@
     <string name="add_due_date">Do you want to add Due-Date ?</string>
     <string name="due_date">Due date</string>
     <string name="add_task">Add Note</string>
+    <string name="save_note_alert">Do you want to save this note?</string>
+    <string name="please_confirm">Please confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 </resources>

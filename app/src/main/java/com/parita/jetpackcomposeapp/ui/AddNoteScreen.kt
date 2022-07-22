@@ -11,6 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -220,7 +221,44 @@ fun SectionDueDate() {
 }
 
 @Composable
+fun alert(
+    msg: String,
+    showDialog: Boolean,
+    onDismiss: () -> Unit
+) {
+    if (showDialog) {
+        AlertDialog(
+            title = {
+                Text(text = stringResource(id = R.string.please_confirm), color = Black)
+            },
+            text = {
+                Text(msg, color = Black)
+            },
+            onDismissRequest = onDismiss,
+            dismissButton = {
+                TextButton(onClick = onDismiss)
+                { Text(text = stringResource(id = R.string.cancel), color = Black) }
+            },
+            confirmButton = {
+                TextButton(onClick = onDismiss) {
+                    Text(stringResource(id = R.string.ok), color = Black)
+                }
+            },
+        )
+    }
+}
+
+@Composable
 fun SectionAddTask() {
+    val showDialog = remember {
+        mutableStateOf(false)
+    }
+    if (showDialog.value) {
+        alert(
+            msg = stringResource(id = R.string.save_note_alert),
+            showDialog = showDialog.value,
+            onDismiss = { showDialog.value = false })
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -232,8 +270,7 @@ fun SectionAddTask() {
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = BlueViolet1,
             ),
-            onClick = {
-            },
+            onClick = { showDialog.value = true },
             modifier = Modifier
                 .padding(16.dp)
                 .width(150.dp)
