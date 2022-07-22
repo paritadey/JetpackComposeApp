@@ -20,4 +20,9 @@
     <string name="notes_screen">Chalk down your daily thoughts</string>
     <string name="check_out_notes">Check out all the notes</string>
     <string name="add_note_screen_2">Please choose the category tag !</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="add_due_date">Do you want to add Due-Date ?</string>
+    <string name="due_date">Due date</string>
+    <string name="add_task">Add Note</string>
 </resources>
