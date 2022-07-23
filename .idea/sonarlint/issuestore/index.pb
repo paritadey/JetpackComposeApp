@@ -78,3 +78,13 @@ y
 Iapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/NoteItem.kt,c\e\ceb7a9852af3aae5805f03367d804f2849303889
 ~
 Napp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/MusicListItem.kt,1\b\1b9125f5105e8ebd705bc0d24e0b1313b3cf1a13
+p
+@app/src/main/java/com/parita/jetpackcomposeapp/data/NotesData.kt,f\c\fc4c210ce153392c67e8293763779f65980c009c
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/NotesFragment.kt,1\8\1872ad7ddabd6bf373be3dc0f82f3ee114e456a0
+~
+Napp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/AddNoteFragment.kt,5\8\58586bd2b1310e656531da8eca32538e9d164774
+s
+Capp/src/main/java/com/parita/jetpackcomposeapp/ui/NoteListScreen.kt,b\1\b10374113c2758b148ac6f252426344db4024b1f
+q
+Aapp/src/main/java/com/parita/jetpackcomposeapp/ui/SearchScreen.kt,7\f\7fe322a72202729b41f4dc882dbbe6060b20f9b6

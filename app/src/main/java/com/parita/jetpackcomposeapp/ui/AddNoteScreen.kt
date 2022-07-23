@@ -2,6 +2,7 @@ package com.parita.jetpackcomposeapp.ui
 
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
+import android.util.Log
 import android.widget.DatePicker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,7 +12,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -28,6 +28,7 @@ import com.parita.jetpackcomposeapp.ui.theme.BlueViolet1
 import com.parita.jetpackcomposeapp.ui.theme.DeepBlue
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS1
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS2
+import com.parita.jetpackcomposeapp.util.JetpackConstant.NDF
 import com.parita.jetpackcomposeapp.util.JetpackConstant.description
 import com.parita.jetpackcomposeapp.util.JetpackConstant.title
 import java.util.*
@@ -41,23 +42,23 @@ fun AddNoteScreen(findNavController: NavController) {
     ) {
         Column {
             SectionNoteGreeting(ANS1)
-            SectionEditBox(title)
-            SectionEditBox(description)
-            SectionCategory()
-            SectionDueDate()
-            SectionAddTask()
+            var titleData = SectionEditBox(title)
+            var descriptionData = SectionEditBox(description)
+            var category = SectionCategory()
+            var dueDate = SectionDueDate()
+            SectionAddTask(titleData, descriptionData, category, dueDate)
         }
     }
 }
 
 @Composable
-fun SectionEditBox(type: String) {
+fun SectionEditBox(type: String): String {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        var textTitle by remember {
+        var textData by remember {
             mutableStateOf("")
         }
         OutlinedTextField(
@@ -70,9 +71,10 @@ fun SectionEditBox(type: String) {
             shape = RoundedCornerShape(10.dp),
             //singleLine = true,
             maxLines = if (type.equals(description)) 50 else 1,
-            value = textTitle,
-            onValueChange = { textTitle = it },
-            label = { Text(stringResource(id = R.string.title)) },
+            value = textData,
+            onValueChange = { textData = it },
+            label = {if(type.equals(title)) Text(stringResource(id = R.string.title)) else Text(
+                stringResource(id = R.string.description)) },
             modifier = if (type.equals(description)) {
                 Modifier
                     .padding(start = 16.dp, end = 16.dp, top = 20.dp)
@@ -90,14 +92,19 @@ fun SectionEditBox(type: String) {
                 cursorColor = White
             )
         )
+        if(textData!=null){
+            return textData
+        }
     }
+    return NDF
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SectionCategory() {
+fun SectionCategory(): String {
+    var category = remember{mutableStateOf("")}
     SectionNoteGreeting(ANS2)
-    val options = listOf<String>(
+    val options = listOf(
         "Choose Category / Tag",
         "Work",
         "Office",
@@ -150,16 +157,21 @@ fun SectionCategory() {
                         selectedOptionText = selectedOption
                         expanded = false
                     }) {
+                        category.value = selectedOption
                         Text(text = selectedOption, color = Black)
                     }
                 }
             }
         }
+        if(category.value!=null && !category.value.equals("Choose Category / Tag")){
+            return category.value
+        }
     }
+    return NDF
 }
 
 @Composable
-fun SectionDueDate() {
+fun SectionDueDate(): String {
     val localContext = LocalContext.current
     val calendar = Calendar.getInstance()
     val year = calendar.get(Calendar.YEAR)
@@ -212,12 +224,16 @@ fun SectionDueDate() {
                     modifier = Modifier.size(16.dp)
                 )
             }
-            if (date.value != null) Text(
-                text = "${date.value}",
-                modifier = Modifier.padding(top = 22.dp, start = 8.dp)
-            )
+            if (date.value != null) {
+                Text(
+                    text = date.value,
+                    modifier = Modifier.padding(top = 22.dp, start = 8.dp)
+                )
+                return date.value
+            }
         }
     }
+    return NDF
 }
 
 @Composable
@@ -249,7 +265,8 @@ fun alert(
 }
 
 @Composable
-fun SectionAddTask() {
+fun SectionAddTask(titleData: String, descriptionData: String, category: String, dueDate: String) {
+    Log.d("TAG", "The data we found: ${titleData}, ${descriptionData}, ${category}, ${dueDate}")
     val showDialog = remember {
         mutableStateOf(false)
     }
