@@ -27,7 +27,10 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
     val query = mutableStateOf("")
     var startSearch = mutableStateOf(false)
     var noteQuery = mutableStateOf("")
-
+    var title = mutableStateOf("")
+    var description = mutableStateOf("")
+    var category = mutableStateOf("")
+    var dueDate = mutableStateOf("")
 
     suspend fun getMusicData(searchName: String): Resource<JsonObject> {
         var hits: ArrayList<Track> = ArrayList()
@@ -60,16 +63,32 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
         return result
     }
 
-    fun onQueryChanged(query: String){
+    fun onQueryChanged(query: String) {
         this.query.value = query
     }
 
-    fun newSearch(query:String){
+    fun newSearch(query: String) {
         startSearch.value = true
         viewModelScope.launch {
             getMusicData(query)
             viewModelScope.cancel()
             startSearch.value = false
         }
+    }
+
+    fun onTitleChanged(title: String) {
+        this.title.value = title
+    }
+
+    fun onDescriptionChanged(description: String) {
+        this.description.value = description
+    }
+
+    fun onCategoryChanged(category: String) {
+        this.category.value = category
+    }
+
+    fun onDueDateChanged(dueDate: String) {
+        this.dueDate.value = dueDate
     }
 }

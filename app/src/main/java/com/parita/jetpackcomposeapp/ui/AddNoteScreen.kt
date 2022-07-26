@@ -22,15 +22,16 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.ui.theme.BlueViolet1
 import com.parita.jetpackcomposeapp.ui.theme.DeepBlue
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS1
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS2
-import com.parita.jetpackcomposeapp.util.JetpackConstant.NDF
 import com.parita.jetpackcomposeapp.util.JetpackConstant.description
 import com.parita.jetpackcomposeapp.util.JetpackConstant.title
+import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 import java.util.*
 
 @Composable
@@ -41,18 +42,19 @@ fun AddNoteScreen(findNavController: NavController) {
             .fillMaxSize()
     ) {
         Column {
+            val viewModel: JetpackViewModel = hiltViewModel()
             SectionNoteGreeting(ANS1)
-            var titleData = SectionEditBox(title)
-            var descriptionData = SectionEditBox(description)
-            var category = SectionCategory()
-            var dueDate = SectionDueDate()
-            SectionAddTask(titleData, descriptionData, category, dueDate)
+            SectionEditBox(title, viewModel)
+            SectionEditBox(description, viewModel)
+            SectionCategory(viewModel)
+            SectionDueDate(viewModel)
+            SectionAddTask(viewModel)
         }
     }
 }
 
 @Composable
-fun SectionEditBox(type: String): String {
+fun SectionEditBox(type: String, viewModel: JetpackViewModel) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -73,8 +75,11 @@ fun SectionEditBox(type: String): String {
             maxLines = if (type.equals(description)) 50 else 1,
             value = textData,
             onValueChange = { textData = it },
-            label = {if(type.equals(title)) Text(stringResource(id = R.string.title)) else Text(
-                stringResource(id = R.string.description)) },
+            label = {
+                if (type.equals(title)) Text(stringResource(id = R.string.title)) else Text(
+                    stringResource(id = R.string.description)
+                )
+            },
             modifier = if (type.equals(description)) {
                 Modifier
                     .padding(start = 16.dp, end = 16.dp, top = 20.dp)
@@ -92,17 +97,25 @@ fun SectionEditBox(type: String): String {
                 cursorColor = White
             )
         )
-        if(textData!=null){
-            return textData
+        when {
+            textData!= "" && textData!=null -> {
+                when {
+                    type.equals(title) -> {
+                        viewModel.onTitleChanged(textData)
+                    }
+                    type.equals(description) -> {
+                        viewModel.onDescriptionChanged(textData)
+                    }
+                }
+            }
         }
     }
-    return NDF
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun SectionCategory(): String {
-    var category = remember{mutableStateOf("")}
+fun SectionCategory(viewModel: JetpackViewModel) {
+    var category = remember { mutableStateOf("") }
     SectionNoteGreeting(ANS2)
     val options = listOf(
         "Choose Category / Tag",
@@ -155,23 +168,19 @@ fun SectionCategory(): String {
                 options.forEach { selectedOption ->
                     DropdownMenuItem(onClick = {
                         selectedOptionText = selectedOption
+                        viewModel.onCategoryChanged(selectedOption)
                         expanded = false
                     }) {
-                        category.value = selectedOption
                         Text(text = selectedOption, color = Black)
                     }
                 }
             }
         }
-        if(category.value!=null && !category.value.equals("Choose Category / Tag")){
-            return category.value
-        }
     }
-    return NDF
 }
 
 @Composable
-fun SectionDueDate(): String {
+fun SectionDueDate(viewModel: JetpackViewModel) {
     val localContext = LocalContext.current
     val calendar = Calendar.getInstance()
     val year = calendar.get(Calendar.YEAR)
@@ -225,15 +234,14 @@ fun SectionDueDate(): String {
                 )
             }
             if (date.value != null) {
+                viewModel.onDueDateChanged(date.value)
                 Text(
                     text = date.value,
                     modifier = Modifier.padding(top = 22.dp, start = 8.dp)
                 )
-                return date.value
             }
         }
     }
-    return NDF
 }
 
 @Composable
@@ -265,8 +273,8 @@ fun alert(
 }
 
 @Composable
-fun SectionAddTask(titleData: String, descriptionData: String, category: String, dueDate: String) {
-    Log.d("TAG", "The data we found: ${titleData}, ${descriptionData}, ${category}, ${dueDate}")
+fun SectionAddTask(viewModel: JetpackViewModel) {
+    Log.d("TAG", "Data we found: ${viewModel.title.value}, ${viewModel.description.value}, ${viewModel.category.value}, ${viewModel.dueDate.value}")
     val showDialog = remember {
         mutableStateOf(false)
     }
