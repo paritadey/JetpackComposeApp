@@ -1,6 +1,9 @@
 package com.parita.jetpackcomposeapp.ui
 
+import android.os.Bundle
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,9 +15,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -75,7 +81,6 @@ fun SectionNoteGreeting(screenName: String) {
 fun SectionSearch() {
     val viewModel: JetpackViewModel = hiltViewModel()
     var noteQuery = viewModel.noteQuery.value
-
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -133,63 +138,54 @@ fun SectionSearch() {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ShowRecyclerView() {
-    Column {
-        Text(
-            text = stringResource(id = R.string.check_out_notes),
-            style = MaterialTheme.typography.h2,
-            modifier = Modifier.padding(15.dp)
-        )
+    val viewModel: JetpackViewModel = hiltViewModel()
+    var list = viewModel.noteList.collectAsState(initial = listOf())
+    val noteArrayList = arrayListOf<NotesData>()
+    list.value.forEach {
+        noteArrayList.add(it)
     }
-    var featureNotes = sectionNotes()
-    LazyColumn(contentPadding = PaddingValues(10.dp)) {
-        items(featureNotes.size) {
-            NoteItem(featureNotes[it])
+    if (noteArrayList.isEmpty()) {
+        Column {
+            Text(
+                text = stringResource(id = R.string.no_data_found),
+                style = MaterialTheme.typography.h2,
+                modifier = Modifier.padding(15.dp)
+            )
+        }
+        Column {
+            Text(
+                text = stringResource(id = R.string.advice),
+                style = MaterialTheme.typography.h2,
+                modifier = Modifier.padding(15.dp)
+            )
+        }
+    } else {
+        Column {
+            Text(
+                text = stringResource(id = R.string.check_out_notes),
+                style = MaterialTheme.typography.h2,
+                modifier = Modifier.padding(15.dp)
+            )
+        }
+        var featureNotes = noteArrayList
+        LazyColumn(contentPadding = PaddingValues(10.dp)) {
+            items(featureNotes.size) {
+                NoteItem(featureNotes[it])
+            }
         }
     }
 }
 
-fun sectionNotes(): List<NotesData> {
-    return listOf(
-        NotesData(
-            "note_id_1",
-            "My night sleep",
-            "abcde fghi jklm nopq rstu vwx yz",
-            "12:09, 19.07.2022",
-            "12:09, 19.07.2022",
-            "25.08.2022"
-        ),
-        NotesData(
-            "note_id_2",
-            "Bazar list",
-            "abcde fghi jklm nopq rstu vwx yz",
-            "11:50, 18.10.2021",
-            "11:50, 18.10.2021",
-            "20.12.2021"
-        ),
-        NotesData(
-            "note_id_3",
-            "Trip details",
-            "abcde fghi jklm nopq rstu vwx yz",
-            "13:45, 28.01.2021",
-            "13:45, 28.01.2021",
-            "28.05.2021"
-        ),
-        NotesData(
-            "note_id_4",
-            "Contest details",
-            "abcde fghi jklm nopq rstu vwx yz",
-            "22:59, 05.02.2020",
-            "22:59, 05.02.2020",
-            "15.02.2020"
-        )
-    )
-}
-
 @Composable
 fun ShowFloatingButton(findNavController: NavController) {
+    val viewModel: JetpackViewModel = hiltViewModel()
+    var list = viewModel.noteList.collectAsState(initial = listOf())
+    val noteArrayList = arrayListOf<NotesData>()
+    list.value.forEach {
+        noteArrayList.add(it)
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -197,7 +193,11 @@ fun ShowFloatingButton(findNavController: NavController) {
         verticalArrangement = Arrangement.Bottom, horizontalAlignment = Alignment.End
     ) {
         FloatingActionButton(
-            onClick = { findNavController.navigate(R.id.notesListToAddNote) },
+            onClick = {
+                findNavController.navigate(R.id.notesListToAddNote, Bundle().apply {
+                    putSerializable("noteList", noteArrayList)
+                })
+            },
             backgroundColor = BlueViolet1, contentColor = Color.White
         ) {
             Icon(Icons.Filled.Add, contentDescription = "Add New Note button")

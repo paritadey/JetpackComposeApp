@@ -83,6 +83,9 @@
         <action
             android:id="@+id/notesListToAddNote"
             app:destination="@id/addNoteFragment"/>
+        <argument
+            android:name="noteList"
+            app:argType="com.parita.jetpackcomposeapp.data.NotesData[]" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"

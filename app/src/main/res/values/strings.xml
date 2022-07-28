@@ -29,4 +29,6 @@
     <string name="please_confirm">Please confirm</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
+    <string name="no_data_found">No previous note is present</string>
+    <string name="advice">Please click on the Add button to create a note !</string>
 </resources>

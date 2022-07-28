@@ -2,7 +2,6 @@ package com.parita.jetpackcomposeapp.ui
 
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
-import android.util.Log
 import android.widget.DatePicker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
+import com.parita.jetpackcomposeapp.data.NotesData
 import com.parita.jetpackcomposeapp.ui.theme.BlueViolet1
 import com.parita.jetpackcomposeapp.ui.theme.DeepBlue
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS1
@@ -32,10 +32,12 @@ import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS2
 import com.parita.jetpackcomposeapp.util.JetpackConstant.description
 import com.parita.jetpackcomposeapp.util.JetpackConstant.title
 import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 @Composable
-fun AddNoteScreen(findNavController: NavController) {
+fun AddNoteScreen(findNavController: NavController, noteArrayList: ArrayList<NotesData>) {
     Box(
         modifier = Modifier
             .background(DeepBlue)
@@ -48,7 +50,7 @@ fun AddNoteScreen(findNavController: NavController) {
             SectionEditBox(description, viewModel)
             SectionCategory(viewModel)
             SectionDueDate(viewModel)
-            SectionAddTask(viewModel)
+            SectionAddTask(viewModel, noteArrayList)
         }
     }
 }
@@ -98,7 +100,7 @@ fun SectionEditBox(type: String, viewModel: JetpackViewModel) {
             )
         )
         when {
-            textData!= "" && textData!=null -> {
+            textData != "" && textData != null -> {
                 when {
                     type.equals(title) -> {
                         viewModel.onTitleChanged(textData)
@@ -248,8 +250,16 @@ fun SectionDueDate(viewModel: JetpackViewModel) {
 fun alert(
     msg: String,
     showDialog: Boolean,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit,
+    viewModel: JetpackViewModel,
+    noteArrayList: ArrayList<NotesData>
 ) {
+    val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy 'at' HH:mm")
+    val currentDateAndTime: String = simpleDateFormat.format(Date())
+    viewModel.onCreationTime(currentDateAndTime)
+    viewModel.lastNoteData(noteArrayList.last().noteId)
+
     if (showDialog) {
         AlertDialog(
             title = {
@@ -264,7 +274,7 @@ fun alert(
                 { Text(text = stringResource(id = R.string.cancel), color = Black) }
             },
             confirmButton = {
-                TextButton(onClick = onDismiss) {
+                TextButton(onClick = onConfirm) {
                     Text(stringResource(id = R.string.ok), color = Black)
                 }
             },
@@ -273,16 +283,17 @@ fun alert(
 }
 
 @Composable
-fun SectionAddTask(viewModel: JetpackViewModel) {
-    Log.d("TAG", "Data we found: ${viewModel.title.value}, ${viewModel.description.value}, ${viewModel.category.value}, ${viewModel.dueDate.value}")
-    val showDialog = remember {
-        mutableStateOf(false)
-    }
-    if (showDialog.value) {
+fun SectionAddTask(viewModel: JetpackViewModel, noteArrayList: ArrayList<NotesData>) {
+    val showDialogState: Boolean by viewModel.showDialog.collectAsState()
+
+    if (showDialogState) {
         alert(
             msg = stringResource(id = R.string.save_note_alert),
-            showDialog = showDialog.value,
-            onDismiss = { showDialog.value = false })
+            showDialog = showDialogState,
+            onDismiss = viewModel::onDialogDismiss,
+            onConfirm = viewModel::onDialogConfirm,
+            viewModel, noteArrayList
+        )
     }
     Column(
         modifier = Modifier
@@ -295,7 +306,7 @@ fun SectionAddTask(viewModel: JetpackViewModel) {
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = BlueViolet1,
             ),
-            onClick = { showDialog.value = true },
+            onClick = { viewModel.onOpenDialogClicked()},
             modifier = Modifier
                 .padding(16.dp)
                 .width(150.dp)

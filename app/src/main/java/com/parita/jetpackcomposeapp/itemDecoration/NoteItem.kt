@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.parita.jetpackcomposeapp.data.NotesData
@@ -61,6 +62,14 @@ fun NoteItem(notesData: NotesData) {
                     text = notesData.noteTitle,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
+                    color = Color.White
+                )
+                Text(
+                    text = notesData.noteDescription,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 14.sp,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                     color = Color.White
                 )
             }
