@@ -6,7 +6,9 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,6 +32,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.NotesData
+import com.parita.jetpackcomposeapp.itemDecoration.FeatureItem
 import com.parita.jetpackcomposeapp.itemDecoration.NoteItem
 import com.parita.jetpackcomposeapp.ui.theme.*
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS1
@@ -138,6 +141,7 @@ fun SectionSearch() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ShowRecyclerView() {
     val viewModel: JetpackViewModel = hiltViewModel()
@@ -169,8 +173,20 @@ fun ShowRecyclerView() {
                 modifier = Modifier.padding(15.dp)
             )
         }
-        var featureNotes = noteArrayList
-        LazyColumn(contentPadding = PaddingValues(10.dp)) {
+        var featureNotes = noteArrayList.sortedByDescending { it.noteCreationTime }//noteArrayList.sortedWith(compareBy({it.noteCreationTime}))
+       /* LazyColumn(
+            contentPadding = PaddingValues(10.dp),
+            modifier = Modifier.fillMaxWidth().height(550.dp)
+        ) {
+            items(featureNotes.size) {
+                NoteItem(featureNotes[it])
+            }
+        }*/
+        LazyVerticalGrid(
+            cells = GridCells.Fixed(2),
+            contentPadding = PaddingValues(start = 10.dp, end = 10.dp, bottom = 80.dp),
+            modifier = Modifier.height(550.dp)
+        ) {
             items(featureNotes.size) {
                 NoteItem(featureNotes[it])
             }

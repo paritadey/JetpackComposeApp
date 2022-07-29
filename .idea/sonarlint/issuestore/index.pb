@@ -64,8 +64,6 @@ Lapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/FeatureItem.kt,a
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 t
 Dapp/src/main/java/com/parita/jetpackcomposeapp/JetpackApplication.kt,e\a\ea98b3113a8cdf3bd194c78c21f8401fa6d5f108
-o
-?app/src/main/java/com/parita/jetpackcomposeapp/ui/HomeScreen.kt,2\0\2007504d7cb214dbd061dca354f147de0c4f1fdb
 {
 Kapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/HomeFragment.kt,7\e\7ea785502ef600829b9564c82843c50264ce6c19
 z
@@ -86,3 +84,11 @@ u
 Eapp/src/main/java/com/parita/jetpackcomposeapp/api/RetrofitService.kt,8\f\8fc2a5255836fb7d3eaffabf0c41cec3c24683d5
 q
 Aapp/src/main/java/com/parita/jetpackcomposeapp/ui/SearchScreen.kt,7\f\7fe322a72202729b41f4dc882dbbe6060b20f9b6
+€
+Papp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/PlayMusicFragment.kt,f\0\f00d063479a79d089844388c713b313040bc119c
+p
+@app/src/main/java/com/parita/jetpackcomposeapp/data/MusicData.kt,5\0\50cd6b329171f3e931b14f30fd19e3fcda21ff9b
+t
+Dapp/src/main/java/com/parita/jetpackcomposeapp/ui/PlayMusicScreen.kt,a\6\a6c0d5f432a7f1b91b98fdcdbbd17546a056b315
+}
+Mapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/SplashFragment.kt,c\b\cb3a40aa0347369c253a6fe3f5d49575bbd8f953

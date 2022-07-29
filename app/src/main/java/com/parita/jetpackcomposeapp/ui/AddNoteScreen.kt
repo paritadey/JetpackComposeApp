@@ -50,7 +50,7 @@ fun AddNoteScreen(findNavController: NavController, noteArrayList: ArrayList<Not
             SectionEditBox(description, viewModel)
             SectionCategory(viewModel)
             SectionDueDate(viewModel)
-            SectionAddTask(viewModel, noteArrayList)
+            SectionAddTask(viewModel, noteArrayList, findNavController)
         }
     }
 }
@@ -117,7 +117,6 @@ fun SectionEditBox(type: String, viewModel: JetpackViewModel) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun SectionCategory(viewModel: JetpackViewModel) {
-    var category = remember { mutableStateOf("") }
     SectionNoteGreeting(ANS2)
     val options = listOf(
         "Choose Category / Tag",
@@ -243,6 +242,8 @@ fun SectionDueDate(viewModel: JetpackViewModel) {
                 )
             }
         }
+    } else {
+        viewModel.onDueDateChanged("NA/NA/NA")
     }
 }
 
@@ -253,7 +254,7 @@ fun alert(
     onDismiss: () -> Unit,
     onConfirm: () -> Unit,
     viewModel: JetpackViewModel,
-    noteArrayList: ArrayList<NotesData>
+    noteArrayList: ArrayList<NotesData>, findNavController: NavController
 ) {
     val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy 'at' HH:mm")
     val currentDateAndTime: String = simpleDateFormat.format(Date())
@@ -283,7 +284,7 @@ fun alert(
 }
 
 @Composable
-fun SectionAddTask(viewModel: JetpackViewModel, noteArrayList: ArrayList<NotesData>) {
+fun SectionAddTask(viewModel: JetpackViewModel, noteArrayList: ArrayList<NotesData>, findNavController: NavController) {
     val showDialogState: Boolean by viewModel.showDialog.collectAsState()
 
     if (showDialogState) {
@@ -292,7 +293,8 @@ fun SectionAddTask(viewModel: JetpackViewModel, noteArrayList: ArrayList<NotesDa
             showDialog = showDialogState,
             onDismiss = viewModel::onDialogDismiss,
             onConfirm = viewModel::onDialogConfirm,
-            viewModel, noteArrayList
+            viewModel, noteArrayList,
+            findNavController
         )
     }
     Column(

@@ -1,7 +1,5 @@
 package com.parita.jetpackcomposeapp.itemDecoration
 
-import androidx.compose.foundation.background
-import com.parita.jetpackcomposeapp.R
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
@@ -25,15 +23,16 @@ fun NoteItem(notesData: NotesData) {
     Card(
         modifier = Modifier
             .padding(horizontal = 2.dp, vertical = 8.dp)
-            .fillMaxWidth(),
+            .width(250.dp)
+            .height(150.dp),
         elevation = 2.dp,
         shape = (RoundedCornerShape(corner = CornerSize(20.dp))),
         backgroundColor = BlueViolet1
     ) {
         Row {
-            Surface(
+            /*Surface(
                 modifier = Modifier
-                    .size(50.dp)
+                    .size(10.dp)
                     .padding(start = 8.dp, top = 8.dp, end = 0.dp, bottom = 8.dp)
                     .clip(CircleShape)
             ) {
@@ -51,7 +50,7 @@ fun NoteItem(notesData: NotesData) {
                         modifier = Modifier.size(16.dp)
                     )
                 }
-            }
+            }*/
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,8 +71,15 @@ fun NoteItem(notesData: NotesData) {
                     overflow = TextOverflow.Ellipsis,
                     color = Color.White
                 )
+                Text(
+                    text ="Last modified: "+ notesData.noteLastModified,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 14.sp,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    color = Color.White
+                )
             }
         }
     }
-
 }
