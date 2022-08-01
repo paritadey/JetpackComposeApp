@@ -40,7 +40,7 @@ class JetpackRepository @Inject constructor(private val api: RetrofitApi, privat
         notesDatabaseDao.updateLastModifiedDescNDate(note_description, note_last_modified, noteId)
     }
 
-    suspend fun deleteNoteById(noteId: String) {
+    suspend fun deleteNoteById(noteId: Int) {
         notesDatabaseDao.deleteNote(noteId)
     }
 

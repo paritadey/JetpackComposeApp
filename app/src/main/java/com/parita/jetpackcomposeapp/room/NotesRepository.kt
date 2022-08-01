@@ -21,7 +21,7 @@ class NotesRepository/* @Inject constructor*/(private val notesDatabaseDao: Note
         notesDatabaseDao.updateLastModifiedDescNDate(note_description, note_last_modified, noteId)
     }
 
-    suspend fun deleteNoteById(noteId: String) {
+    suspend fun deleteNoteById(noteId: Int) {
         notesDatabaseDao.deleteNote(noteId)
     }
 }

@@ -18,6 +18,7 @@ object JetpackConstant {
     const val NLS = "NoteListScreen"
     const val ANS1 = "AddNoteScreen_1"
     const val ANS2 = "AddNoteScreen_2"
+    const val RNS = "ReadNoteScreen"
     const val description = "description"
     const val title = "title"
     const val NDF = "No data found"

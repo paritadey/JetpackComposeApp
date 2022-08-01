@@ -1,25 +1,30 @@
 package com.parita.jetpackcomposeapp.itemDecoration
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.parita.jetpackcomposeapp.data.NotesData
+import com.parita.jetpackcomposeapp.data.Track
 import com.parita.jetpackcomposeapp.ui.theme.*
 
 @Composable
-fun NoteItem(notesData: NotesData) {
+fun NoteItem(
+    notesData: NotesData,
+    selectedItem: (NotesData) -> Unit,
+    itemToSelect: (NotesData) -> Unit
+) {
     Card(
         modifier = Modifier
             .padding(horizontal = 2.dp, vertical = 8.dp)
@@ -53,6 +58,12 @@ fun NoteItem(notesData: NotesData) {
             }*/
             Column(
                 modifier = Modifier
+                    .pointerInput(Unit) {
+                        detectTapGestures(
+                            onLongPress = { itemToSelect(notesData) },
+                            onTap = { selectedItem(notesData) }
+                        )
+                    }
                     .fillMaxWidth()
                     .padding(10.dp)
                     .align(Alignment.CenterVertically)
@@ -72,7 +83,7 @@ fun NoteItem(notesData: NotesData) {
                     color = Color.White
                 )
                 Text(
-                    text ="Last modified: "+ notesData.noteLastModified,
+                    text = "Last modified: " + notesData.noteLastModified,
                     fontWeight = FontWeight.Light,
                     fontSize = 14.sp,
                     maxLines = 2,

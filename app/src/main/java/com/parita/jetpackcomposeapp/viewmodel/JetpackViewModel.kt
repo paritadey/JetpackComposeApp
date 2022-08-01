@@ -1,5 +1,6 @@
 package com.parita.jetpackcomposeapp.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -37,6 +38,9 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
     var lastNoteId = mutableStateOf(0)
     private val _showDialog = MutableStateFlow(false)
     val showDialog: StateFlow<Boolean> = _showDialog.asStateFlow()
+    private val _showDeleteDialog = MutableStateFlow(false)
+    val showDeleteDialog : StateFlow<Boolean> = _showDeleteDialog.asStateFlow()
+    var longPressNoteId = mutableStateOf(0)
 
 
     suspend fun getMusicData(searchName: String): Resource<JsonObject> {
@@ -121,8 +125,21 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
 
     val noteList: Flow<List<NotesData>> = repository.fetchAllNotes
 
+    fun onOpenDeleteDialogClicked(longPressNoteId: Int){
+        this.longPressNoteId.value = longPressNoteId
+        _showDeleteDialog.value = true
+    }
+
     fun onOpenDialogClicked() {
         _showDialog.value = true
+    }
+    
+    fun onDeleteDialogConfirm() {
+        _showDeleteDialog.value = false
+        Log.d("TAG", "Selected note id to delete : ${longPressNoteId.value}")
+        viewModelScope.launch {
+            repository.deleteNoteById(longPressNoteId.value)
+        }
     }
 
     fun onDialogConfirm() {
@@ -142,5 +159,9 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
 
     fun onDialogDismiss() {
         _showDialog.value = false
+    }
+    
+    fun onDeleteDialogDismiss() {
+        _showDeleteDialog.value = false
     }
 }

@@ -86,10 +86,19 @@
         <argument
             android:name="noteList"
             app:argType="com.parita.jetpackcomposeapp.data.NotesData[]" />
+        <action
+            android:id="@+id/notesToReadNotes"
+            app:destination="@id/readNoteFragment" />
+        <argument
+            android:name="noteData"
+            app:argType="com.parita.jetpackcomposeapp.data.NotesData" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.AddNoteFragment"
-        android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
+        android:label="fragment_add_note" />
+    <fragment
+        android:id="@+id/readNoteFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.ReadNoteFragment"
+        android:label="ReadNoteFragment" />
 </navigation>
