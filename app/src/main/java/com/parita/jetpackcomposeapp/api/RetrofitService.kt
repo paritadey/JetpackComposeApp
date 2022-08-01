@@ -1,6 +1,9 @@
 package com.parita.jetpackcomposeapp.api
 
+import android.app.Application
 import com.parita.jetpackcomposeapp.repository.JetpackRepository
+import com.parita.jetpackcomposeapp.room.NoteDatabase
+import com.parita.jetpackcomposeapp.room.NotesDatabaseDao
 import com.parita.jetpackcomposeapp.util.JetpackConstant
 import dagger.Module
 import dagger.Provides
@@ -16,13 +19,26 @@ import javax.inject.Singleton
 class RetrofitService {
     @Singleton
     @Provides
-    fun provideUserRepository(
-        api: RetrofitApi
-    ) = JetpackRepository(api)
+    fun getNoteDatabase(context: Application): NoteDatabase {
+        return NoteDatabase.getInstance(context)
+    }
 
     @Singleton
     @Provides
-    fun provideJetpackApi():RetrofitApi{
+    fun appDao(noteDatabase: NoteDatabase): NotesDatabaseDao {
+        return noteDatabase.noteDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+        api: RetrofitApi,
+        notesDatabaseDao: NotesDatabaseDao
+    ) = JetpackRepository(api, notesDatabaseDao)
+
+    @Singleton
+    @Provides
+    fun provideJetpackApi(): RetrofitApi {
         val client = OkHttpClient.Builder().apply {
             addInterceptor(JetpackInterceptor())
         }.build()

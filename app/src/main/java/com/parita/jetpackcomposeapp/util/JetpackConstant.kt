@@ -15,4 +15,11 @@ object JetpackConstant {
     const val RapidAPI_KEY = "b741a1115cmsh2000882239b456ep1fe83ajsn1ce716699ab9"
     const val RapidApi_host_Name = "X-RapidAPI-Host"
     const val RapidAPI_Host = "shazam.p.rapidapi.com"
+    const val NLS = "NoteListScreen"
+    const val ANS1 = "AddNoteScreen_1"
+    const val ANS2 = "AddNoteScreen_2"
+    const val RNS = "ReadNoteScreen"
+    const val description = "description"
+    const val title = "title"
+    const val NDF = "No data found"
 }

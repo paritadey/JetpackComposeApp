@@ -110,4 +110,11 @@ dependencies {
     // For local unit tests
     testImplementation 'com.google.dagger:hilt-android-testing:2.42'
     kaptTest 'com.google.dagger:hilt-compiler:2.42'
+
+    implementation "androidx.room:room-runtime:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.2"
+    implementation "androidx.compose.runtime:runtime-livedata:1.1.1"
+    annotationProcessor "androidx.room:room-compiler:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
+
 }

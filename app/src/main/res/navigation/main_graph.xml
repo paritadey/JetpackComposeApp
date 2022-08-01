@@ -15,6 +15,11 @@
         <action
             android:id="@+id/openSearchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/HomeToNotes"
+            app:destination="@id/notesFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/sleepMeditationFragment"
@@ -44,12 +49,7 @@
     <fragment
         android:id="@+id/playMusicFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.PlayMusicFragment"
-        android:label="PlayMusicFragment" >
-        <action
-            android:id="@+id/playBackToSearch"
-            app:destination="@id/searchFragment"
-            app:popUpTo="@id/searchFragment"
-            app:popUpToInclusive="false"/>
+        android:label="PlayMusicFragment">
         <argument
             android:name="key"
             app:argType="string" />
@@ -69,12 +69,36 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        android:label="fragment_splash">
         <action
             android:id="@+id/SplashToHome"
             app:destination="@id/homeFragment"
-            app:popUpToInclusive="false"
-            app:popUpTo="@id/homeFragment"/>
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.NotesFragment"
+        android:label="fragment_notes" >
+        <action
+            android:id="@+id/notesListToAddNote"
+            app:destination="@id/addNoteFragment"/>
+        <argument
+            android:name="noteList"
+            app:argType="com.parita.jetpackcomposeapp.data.NotesData[]" />
+        <action
+            android:id="@+id/notesToReadNotes"
+            app:destination="@id/readNoteFragment" />
+        <argument
+            android:name="noteData"
+            app:argType="com.parita.jetpackcomposeapp.data.NotesData" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.AddNoteFragment"
+        android:label="fragment_add_note" />
+    <fragment
+        android:id="@+id/readNoteFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.ReadNoteFragment"
+        android:label="ReadNoteFragment" />
 </navigation>

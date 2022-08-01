@@ -1,6 +1,35 @@
 <resources>
     <string name="app_name">SleepOMania</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="splash_screen_name">Sleep-O-Mania</string>
+    <string name="splash_image_name">splash image</string>
+    <string name="sweet_sleep">Sweet sleep</string>
+    <string name="insomnia">Insomnia</string>
+    <string name="depression">Depression</string>
+    <string name="home_menu">Home</string>
+    <string name="meditate_menu">Meditate</string>
+    <string name="sleep_menu">Sleep</string>
+    <string name="music_menu">Music</string>
+    <string name="profile_menu">Profile</string>
+    <string name="greetings">We wish you have a good day!</string>
+    <string name="search_image">Search</string>
+    <string name="daily_thought">Daily Thought</string>
+    <string name="meditation_3_mins">Meditation –> 3–10 min</string>
+    <string name="featured">Featured</string>
+    <string name="back_button">Back Button</string>
+    <string name="soothing_music">Soothing songs will take you to the heaven !!</string>
+    <string name="notes_screen">Chalk down your daily thoughts</string>
+    <string name="check_out_notes">Check out all the notes</string>
+    <string name="add_note_screen_2">Please choose the category tag !</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="add_due_date">Do you want to add Due-Date ?</string>
+    <string name="due_date">Due date</string>
+    <string name="add_task">Add Note</string>
+    <string name="save_note_alert">Do you want to save this note?</string>
+    <string name="please_confirm">Please confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+    <string name="no_data_found">No previous note is present</string>
+    <string name="advice">Please click on the Add button to create a note !</string>
+    <string name="delete_note_alert">Do you want to delete this note ?</string>
 </resources>

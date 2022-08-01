@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -75,11 +76,13 @@ fun SplashScreen(findNavController: NavController) {
         .background(Color.White)) {
         Image(
             painter = painterResource(id = R.drawable.do_not_disturb),
-            contentDescription = "splash image",
+            contentDescription = stringResource(id = R.string.splash_image_name),
             modifier = Modifier.scale(scale.value)
         )
     }
-    Box(modifier = Modifier.fillMaxSize().padding(0.dp, 260.dp, 0.dp, 0.dp), contentAlignment = Alignment.Center){
-        Text(text="Sleep-O-Mania", style=MaterialTheme.typography.h2, color = Beige3)
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .padding(0.dp, 260.dp, 0.dp, 0.dp), contentAlignment = Alignment.Center){
+        Text(text= stringResource(id = R.string.splash_screen_name), style=MaterialTheme.typography.h2, color = Beige3)
     }
 }

@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -30,6 +31,7 @@ import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 fun SearchScreen(findNavController: NavController) {
     Scaffold(backgroundColor = DeepBlue) {
         SearchView(findNavController)
+     //   ShowFloatingButton(findNavController)
     }
 }
 
@@ -53,12 +55,12 @@ fun SearchView(findNavController: NavController) {
                     onValueChange = {
                         viewModel.onQueryChanged(it)
                     },
-                    label = { Text(text = "Search") },
+                    label = { Text(text = stringResource(id = R.string.search_image)) },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text, imeAction = ImeAction.Search
                     ),
                     leadingIcon = {
-                        Icon(Icons.Filled.Search, contentDescription = "Search", tint = Color.Black)
+                        Icon(Icons.Filled.Search, contentDescription = stringResource(id = R.string.search_image), tint = Color.Black)
                     },
                     keyboardActions = KeyboardActions(
                         onSearch = {
@@ -108,3 +110,4 @@ fun sendData(data:Track, findNavController: NavController){
     bundle.putParcelable("image", data.images)
     findNavController.navigate(R.id.SearchToPlayMusic, bundle)
 }
+
