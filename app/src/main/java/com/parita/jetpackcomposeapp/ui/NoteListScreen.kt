@@ -177,7 +177,7 @@ fun ShowRecyclerView(findNavController: NavController) {
             msg = stringResource(id = R.string.delete_note_alert),
             showDialog = showDeleteDialogState,
             onDismiss = viewModel::onDeleteDialogDismiss,
-            onConfirm = viewModel::onDeleteDialogConfirm,
+            onConfirm = { viewModel.onDeleteDialogConfirm(findNavController, "NoteListScreen") },
             viewModel
         )
     }

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.parita.jetpackcomposeapp.data.NotesData
@@ -134,12 +135,12 @@ class JetpackViewModel @Inject constructor(private val repository: JetpackReposi
         _showDialog.value = true
     }
     
-    fun onDeleteDialogConfirm() {
+    fun onDeleteDialogConfirm(findNavController: NavController, screen: String) {
         _showDeleteDialog.value = false
-        Log.d("TAG", "Selected note id to delete : ${longPressNoteId.value}")
         viewModelScope.launch {
             repository.deleteNoteById(longPressNoteId.value)
         }
+        if(screen.equals("ReadNoteScreen")) findNavController.popBackStack()
     }
 
     fun onDialogConfirm() {
