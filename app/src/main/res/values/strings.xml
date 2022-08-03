@@ -32,4 +32,5 @@
     <string name="no_data_found">No previous note is present</string>
     <string name="advice">Please click on the Add button to create a note !</string>
     <string name="delete_note_alert">Do you want to delete this note ?</string>
+    <string name="update_note_screen">Chalk down the changes in your note !</string>
 </resources>

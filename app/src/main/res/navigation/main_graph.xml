@@ -100,5 +100,16 @@
     <fragment
         android:id="@+id/readNoteFragment"
         android:name="com.parita.jetpackcomposeapp.ui.fragments.ReadNoteFragment"
-        android:label="ReadNoteFragment" />
+        android:label="ReadNoteFragment" >
+        <action
+            android:id="@+id/readNoteToUpdateNote"
+            app:destination="@id/updateNoteFragment" />
+        <argument
+            android:name="notesData"
+            app:argType="com.parita.jetpackcomposeapp.data.NotesData" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateNoteFragment"
+        android:name="com.parita.jetpackcomposeapp.ui.fragments.UpdateNoteFragment"
+        android:label="UpdateNoteFragment" />
 </navigation>

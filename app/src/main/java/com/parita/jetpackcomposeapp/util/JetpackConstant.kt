@@ -22,4 +22,5 @@ object JetpackConstant {
     const val description = "description"
     const val title = "title"
     const val NDF = "No data found"
+    const val UNS = "UpdateNoteScreen"
 }

@@ -1,6 +1,6 @@
 package com.parita.jetpackcomposeapp.ui
 
-import android.util.Log
+import android.os.Bundle
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
@@ -31,6 +31,7 @@ import com.parita.jetpackcomposeapp.R
 import com.parita.jetpackcomposeapp.data.NotesData
 import com.parita.jetpackcomposeapp.ui.theme.DeepBlue
 import com.parita.jetpackcomposeapp.ui.theme.TextWhite
+import com.parita.jetpackcomposeapp.util.JetpackConstant
 import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 
 @Composable
@@ -42,15 +43,20 @@ fun ReadNoteScreen(findNavController: NavController, notesData: NotesData) {
     ) {
         Column {
             //SectionNoteGreeting(JetpackConstant.RNS)
+            val viewModel: JetpackViewModel = hiltViewModel()
             ToolBar(findNavController)
-            NoteDetails(notesData)
-            ExpandedFloatingButton(findNavController, notesData)
+            NoteDetails(notesData, viewModel)
+            ExpandedFloatingButton(findNavController, notesData, viewModel)
         }
     }
 }
 
 @Composable
-fun ExpandedFloatingButton(findNavController: NavController, notesData: NotesData) {
+fun ExpandedFloatingButton(
+    findNavController: NavController,
+    notesData: NotesData,
+    viewModel: JetpackViewModel
+) {
     var multiFloatingState by remember {
         mutableStateOf(MultiFloatingState.Collapsed)
     }
@@ -75,7 +81,7 @@ fun ExpandedFloatingButton(findNavController: NavController, notesData: NotesDat
         MultiFloatingButton(
             multiFloatingState = multiFloatingState,
             onMultiFabStateChange = { multiFloatingState = it },
-            items = items, notesData, findNavController
+            items = items, notesData, findNavController, viewModel
         )
     }
 }
@@ -86,9 +92,9 @@ fun MultiFloatingButton(
     onMultiFabStateChange: (MultiFloatingState) -> Unit,
     items: List<MinFabItem>,
     notesData: NotesData,
-    findNavController: NavController
+    findNavController: NavController,
+    viewModel: JetpackViewModel
 ) {
-    val viewModel: JetpackViewModel = hiltViewModel()
     val transition = updateTransition(targetState = multiFloatingState, label = "transition")
     val rotate by transition.animateFloat(label = "rotate") {
         if (it == MultiFloatingState.Expanded) 315f else 0f
@@ -117,10 +123,11 @@ fun MultiFloatingButton(
             items.forEach { it ->
                 MinFab(item = it, alpha, fabScale, onMinFabItemClick = {
                     if (it.label.equals("Delete Note")) {
-                        Log.d("TAG", "Delete button pressed")
                         viewModel.onOpenDeleteDialogClicked(notesData.noteId)
                     } else if (it.label.equals("Edit Note")) {
-                        Log.d("TAG", "Edit button pressed")
+                        findNavController.navigate(R.id.readNoteToUpdateNote, Bundle().apply {
+                            putParcelable("notes_data", notesData)
+                        })
                     }
                 })
                 Spacer(modifier = Modifier.size(16.dp))
@@ -186,7 +193,7 @@ fun MinFab(
 }
 
 @Composable
-fun NoteDetails(notesData: NotesData) {
+fun NoteDetails(notesData: NotesData, viewModel: JetpackViewModel) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,

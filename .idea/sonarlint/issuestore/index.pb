@@ -58,8 +58,6 @@ z
 Japp/src/main/java/com/parita/jetpackcomposeapp/ui/SleepMeditationScreen.kt,a\4\a42479c4672bb88fa82680c6e677a021565abc37
 q
 Aapp/src/main/java/com/parita/jetpackcomposeapp/api/RetrofitApi.kt,a\8\a8dd9715d297aa4b5edf4fe17058fc2b6debc59b
-|
-Lapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/NotesFragment.kt,1\8\1872ad7ddabd6bf373be3dc0f82f3ee114e456a0
 u
 Eapp/src/main/java/com/parita/jetpackcomposeapp/api/RetrofitService.kt,8\f\8fc2a5255836fb7d3eaffabf0c41cec3c24683d5
 €
@@ -76,14 +74,8 @@ o
 ?app/src/main/java/com/parita/jetpackcomposeapp/ui/HomeScreen.kt,2\0\2007504d7cb214dbd061dca354f147de0c4f1fdb
 p
 @app/src/main/java/com/parita/jetpackcomposeapp/data/NotesData.kt,f\c\fc4c210ce153392c67e8293763779f65980c009c
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-v
-Fapp/src/main/java/com/parita/jetpackcomposeapp/util/JetpackConstant.kt,c\4\c4166e27a9ab514f026d3827d9ca894053ea10d3
 y
 Iapp/src/main/java/com/parita/jetpackcomposeapp/itemDecoration/MusicRow.kt,1\4\1425de4901070eadfbee163a0d29a8878f9289d2
-~
-Napp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/AddNoteFragment.kt,5\8\58586bd2b1310e656531da8eca32538e9d164774
 q
 Aapp/src/main/java/com/parita/jetpackcomposeapp/ui/SearchScreen.kt,7\f\7fe322a72202729b41f4dc882dbbe6060b20f9b6
 v
@@ -96,3 +88,11 @@ w
 Gapp/src/main/java/com/parita/jetpackcomposeapp/room/NotesDatabaseDao.kt,2\c\2c71c486f71c735ca3ed71c0def0bcfbff9a1b23
 †
 Vapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/SleepMeditationFragment.kt,1\b\1b68259a42a4dcb5234237aa40e9d4001cd7b4c8
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/viewmodel/JetpackViewModel.kt,f\4\f4973c88ba96be9a6bc53e8bc1425c704d522aee
+v
+Fapp/src/main/java/com/parita/jetpackcomposeapp/util/JetpackConstant.kt,c\4\c4166e27a9ab514f026d3827d9ca894053ea10d3
+|
+Lapp/src/main/java/com/parita/jetpackcomposeapp/ui/fragments/NotesFragment.kt,1\8\1872ad7ddabd6bf373be3dc0f82f3ee114e456a0
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35

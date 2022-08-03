@@ -33,6 +33,7 @@ import com.parita.jetpackcomposeapp.ui.theme.*
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS1
 import com.parita.jetpackcomposeapp.util.JetpackConstant.ANS2
 import com.parita.jetpackcomposeapp.util.JetpackConstant.NLS
+import com.parita.jetpackcomposeapp.util.JetpackConstant.UNS
 import com.parita.jetpackcomposeapp.viewmodel.JetpackViewModel
 
 @Composable
@@ -66,6 +67,8 @@ fun SectionNoteGreeting(screenName: String) {
                     stringResource(id = R.string.notes_screen)
                 } else if (screenName.equals(ANS2)) {
                     stringResource(id = R.string.add_note_screen_2)
+                } else if (screenName.equals(UNS)){
+                    stringResource(id = R.string.update_note_screen)
                 } else {
                     stringResource(id = R.string.app_name)
                 },
